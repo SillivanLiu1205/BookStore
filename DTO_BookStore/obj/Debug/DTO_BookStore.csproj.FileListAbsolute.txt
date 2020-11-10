@@ -1,0 +1,12 @@
+C:\Users\Tina\source\repos\MyBookStore\DTO_BookStore\bin\Debug\DTO_BookStore.dll
+C:\Users\Tina\source\repos\MyBookStore\DTO_BookStore\bin\Debug\DTO_BookStore.pdb
+C:\Users\Tina\source\repos\MyBookStore\DTO_BookStore\obj\Debug\DTO_BookStore.csprojAssemblyReference.cache
+C:\Users\Tina\source\repos\MyBookStore\DTO_BookStore\obj\Debug\DTO_BookStore.csproj.CoreCompileInputs.cache
+C:\Users\Tina\source\repos\MyBookStore\DTO_BookStore\obj\Debug\DTO_BookStore.dll
+C:\Users\Tina\source\repos\MyBookStore\DTO_BookStore\obj\Debug\DTO_BookStore.pdb
+D:\VisualStudio\MyBookStore\DTO_BookStore\bin\Debug\DTO_BookStore.dll
+D:\VisualStudio\MyBookStore\DTO_BookStore\bin\Debug\DTO_BookStore.pdb
+D:\VisualStudio\MyBookStore\DTO_BookStore\obj\Debug\DTO_BookStore.csprojAssemblyReference.cache
+D:\VisualStudio\MyBookStore\DTO_BookStore\obj\Debug\DTO_BookStore.csproj.CoreCompileInputs.cache
+D:\VisualStudio\MyBookStore\DTO_BookStore\obj\Debug\DTO_BookStore.dll
+D:\VisualStudio\MyBookStore\DTO_BookStore\obj\Debug\DTO_BookStore.pdb
