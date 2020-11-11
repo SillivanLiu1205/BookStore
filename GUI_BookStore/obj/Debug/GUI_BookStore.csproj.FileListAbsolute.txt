@@ -57,3 +57,5 @@ D:\VisualStudio\MyBookStore\GUI_BookStore\obj\Debug\GUI_BookStore.Views.Popup.fr
 D:\VisualStudio\MyBookStore\GUI_BookStore\obj\Debug\GUI_BookStore.Views.Popup.frmChangePassword.resources
 D:\VisualStudio\MyBookStore\GUI_BookStore\obj\Debug\GUI_BookStore.Views.Popup.frmUpdateBook.resources
 D:\VisualStudio\MyBookStore\GUI_BookStore\obj\Debug\GUI_BookStore.Views.Popup.UC_BookDetails.resources
+D:\VisualStudio\MyBookStore\GUI_BookStore\bin\Debug\DAL_BookStore.dll
+D:\VisualStudio\MyBookStore\GUI_BookStore\bin\Debug\DAL_BookStore.pdb

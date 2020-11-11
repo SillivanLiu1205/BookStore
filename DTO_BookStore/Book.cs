@@ -11,19 +11,20 @@ namespace DTO_BookStore
     {
         public int BookID { get; private set; }
         public string Title { get; set; }
-        public float Price { get; set; }
+        public int Price { get; set; }
         public int Quantity { get; set; }
         public string Author { get; set; }
         public string Publisher { get; set; }
         public bool IsLocalBook { get; set; }
-        public string Category { get; set; }
+        public int Category { get; set; }
         public string Image { get; set; }
         public Book()
         {
 
         }
-        public Book (string Title, float Price, int Quantity, string Author, string Publisher, bool IsLocalBook, string Category, string Image)
+        public Book (int BookID, string Title, int Price, int Quantity, string Author, string Publisher, int CategoryID, bool IsLocalBook, string Image)
         {
+            this.BookID = BookID;
             this.Title = Title;
             this.Price = Price;
             this.Quantity = Quantity;

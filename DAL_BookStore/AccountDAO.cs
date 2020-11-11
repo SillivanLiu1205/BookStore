@@ -14,7 +14,13 @@ namespace DAL_BookStore
     public class AccountDAO
     {
         private static SqlConnection conn;
-        public AccountDAO()
+        public static AccountDAO instance;
+        public static AccountDAO Instance
+        {
+            get { if (instance == null) instance = new AccountDAO(); return instance; }
+            private set { instance = value; }
+        }
+        private AccountDAO()
         {
             conn = sqlConnection.getConnection();
         }
@@ -31,7 +37,7 @@ namespace DAL_BookStore
                 {
                     conn.Open();
                 }
-                da.Fill(dt);
+                da.Fill(dt);                
             }
             catch (SqlException e)
             {
@@ -42,6 +48,33 @@ namespace DAL_BookStore
                 conn.Close();
             }
             return dt;
+        }
+        public Account checkLogin(string Username, string Password)
+        {
+            Account account = null;
+            string Sql = "SELECT * FROM dbo.Account WHERE Username = @Username AND Password = @Password";
+            SqlCommand cmd = new SqlCommand(Sql, conn);
+            cmd.Parameters.AddWithValue("@Username", Username);
+            cmd.Parameters.AddWithValue("@Password", Password);
+            if(conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    account = new Account();
+                    while (reader.Read())
+                    {
+                        account.Username = reader.GetString(0);
+                        account.Fullname = reader.GetString(1);
+                        account.Password = reader.GetString(2);
+                        account.Role = reader.GetString(3);
+                        account.Address = reader.GetString(4);
+                        account.Phone = reader.GetString(5);
+                    }
+                }
+            }
+            return account;
         }
         public bool AddNewAccount(Account account)
         {
@@ -68,12 +101,6 @@ namespace DAL_BookStore
             }
             return result;
         }
-
-        public bool UpdateAccount(Account account)
-        {
-            bool result;
-            string sql = "UPDATE Books SET @Username, @Fullname, @Password, @Role, @"
-            return result;
-        }
+        
     }
 }

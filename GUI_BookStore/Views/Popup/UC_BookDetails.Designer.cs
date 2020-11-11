@@ -99,6 +99,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UC_BookDetails";
             this.Size = new System.Drawing.Size(240, 300);
+            this.Load += new System.EventHandler(this.UC_BookDetails_Load);
             this.Click += new System.EventHandler(this.UC_BookDetails_Click);
             this.MouseHover += new System.EventHandler(this.UC_BookDetails_MouseHover);
             this.panel1.ResumeLayout(false);
@@ -111,10 +112,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbPrice;
-        private System.Windows.Forms.Label lbTitle;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        internal System.Windows.Forms.Panel panel1;
+        internal System.Windows.Forms.Label lbPrice;
+        internal System.Windows.Forms.Label lbTitle;
+        internal System.Windows.Forms.Panel panel2;
+        internal System.Windows.Forms.PictureBox pictureBox1;
     }
 }

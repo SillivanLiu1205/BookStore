@@ -674,7 +674,7 @@
     <value>121, 147</value>
   </data>
   <data name="txtUserName.MaxLength" type="System.Int32, mscorlib">
-    <value>200</value>
+    <value>50</value>
   </data>
   <data name="txtUserName.Size" type="System.Drawing.Size, System.Drawing">
     <value>389, 30</value>
@@ -701,7 +701,7 @@
     <value>121, 226</value>
   </data>
   <data name="txtPassword.MaxLength" type="System.Int32, mscorlib">
-    <value>200</value>
+    <value>50</value>
   </data>
   <data name="txtPassword.Size" type="System.Drawing.Size, System.Drawing">
     <value>389, 30</value>

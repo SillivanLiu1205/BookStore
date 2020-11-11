@@ -1,12 +1,7 @@
-﻿using GUI_BookStore.UserControls;
+﻿using DTO_BookStore;
+using GUI_BookStore.IViews;
+using GUI_BookStore.UserControls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI_BookStore.UserForms
@@ -15,13 +10,16 @@ namespace GUI_BookStore.UserForms
     {
         int panelWidth;
         bool isCollapsed;
-        public frmAdmin()
+        Account account;
+        public frmAdmin(Account account)
         {
             InitializeComponent();
+            this.account = account;
         }
 
         private void frmAdmin_Load(object sender, EventArgs e)
         {
+            lbWelcome.Text = "Welcome " + account.Fullname;
             UC_ManageBook c = new UC_ManageBook();
             panelWidth = pnLeft.Width;
             isCollapsed = false;

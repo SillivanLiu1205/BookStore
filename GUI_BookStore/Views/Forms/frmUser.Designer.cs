@@ -231,9 +231,9 @@
         private System.Windows.Forms.Button btnHistory;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.Label lbWelcome;
         private System.Windows.Forms.Timer timerCollapse;
         private System.Windows.Forms.Timer timerTime;
         private System.Windows.Forms.Panel pnControl;
+        internal System.Windows.Forms.Label lbWelcome;
     }
 }

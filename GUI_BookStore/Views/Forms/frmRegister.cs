@@ -1,22 +1,44 @@
-﻿using System;
+﻿using GUI_BookStore.IViews;
+using GUI_BookStore.Presenters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Messaging;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI_BookStore.UserForms
 {
-    public partial class frmRegister : Form
-    {
+    public partial class frmRegister : Form, IRegisterView
+    {        
+        public string Username => txtUserName.Text;
+
+        public string Fullname => txtFullname.Text;
+
+        public string Password => txtPassword.Text;
+
+        public string ConfirmPassword => txtConfirmPassword.Text;
+
+        public string Role => "User";
+
+        public string Address => txtAddress.Text;
+
+        public string Phone => txtPhone.Text;
+
+        public string message { get => message; set => message = value; }
+
+        private PRegister registerPresenter;
+
         public frmRegister()
         {
             InitializeComponent();
+            registerPresenter = new PRegister(this);
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -24,20 +46,37 @@ namespace GUI_BookStore.UserForms
 
         private void btnCreateAccount_Click(object sender, EventArgs e)
         {
-            if (true)
+            try
             {
-                MessageBox.Show("Successfully");
-                this.Close();
-            }
-            else
+                bool addResult = registerPresenter.addNewAccount();
+                if (addResult)
+                {
+                    MessageBox.Show("Successfull");
+                    this.Close();
+                }
+                else
+                {
+                    if (message.Equals(null))
+                    {
+                        message = "Sign Up Fail";
+                    }
+                    MessageBox.Show(message);
+                }
+            }catch (Exception ex)
             {
-                MessageBox.Show("Faild. Please check your information.");
+                MessageBox.Show("Sign Up Fail", ex.Message);
             }
         }
 
         private void llbSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
+        }
+
+        private void frmRegister_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmLogin frm = new frmLogin();
+            frm.Show();
         }
     }
 }

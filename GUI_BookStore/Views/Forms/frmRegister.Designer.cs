@@ -48,6 +48,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -109,7 +111,7 @@
             this.llbSignIn.AutoSize = true;
             this.llbSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.llbSignIn.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llbSignIn.Location = new System.Drawing.Point(299, 564);
+            this.llbSignIn.Location = new System.Drawing.Point(296, 627);
             this.llbSignIn.Name = "llbSignIn";
             this.llbSignIn.Size = new System.Drawing.Size(66, 24);
             this.llbSignIn.TabIndex = 7;
@@ -121,7 +123,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(252, 529);
+            this.label4.Location = new System.Drawing.Point(249, 592);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(184, 24);
             this.label4.TabIndex = 18;
@@ -134,9 +136,9 @@
             this.btnCreateAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateAccount.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateAccount.ForeColor = System.Drawing.Color.White;
-            this.btnCreateAccount.Location = new System.Drawing.Point(137, 475);
+            this.btnCreateAccount.Location = new System.Drawing.Point(134, 538);
             this.btnCreateAccount.Name = "btnCreateAccount";
-            this.btnCreateAccount.Size = new System.Drawing.Size(389, 38);
+            this.btnCreateAccount.Size = new System.Drawing.Size(392, 38);
             this.btnCreateAccount.TabIndex = 6;
             this.btnCreateAccount.Text = "Create Account";
             this.btnCreateAccount.UseVisualStyleBackColor = false;
@@ -146,7 +148,7 @@
             // 
             this.txtPassword.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(137, 275);
-            this.txtPassword.MaxLength = 200;
+            this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(389, 30);
             this.txtPassword.TabIndex = 3;
@@ -167,7 +169,7 @@
             // 
             this.txtUserName.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.Location = new System.Drawing.Point(137, 142);
-            this.txtUserName.MaxLength = 200;
+            this.txtUserName.MaxLength = 50;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(389, 30);
             this.txtUserName.TabIndex = 1;
@@ -187,7 +189,7 @@
             // 
             this.txtFullname.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFullname.Location = new System.Drawing.Point(137, 208);
-            this.txtFullname.MaxLength = 200;
+            this.txtFullname.MaxLength = 50;
             this.txtFullname.Name = "txtFullname";
             this.txtFullname.Size = new System.Drawing.Size(389, 30);
             this.txtFullname.TabIndex = 2;
@@ -207,7 +209,7 @@
             // 
             this.txtConfirmPassword.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConfirmPassword.Location = new System.Drawing.Point(137, 345);
-            this.txtConfirmPassword.MaxLength = 200;
+            this.txtConfirmPassword.MaxLength = 50;
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(389, 30);
             this.txtConfirmPassword.TabIndex = 4;
@@ -228,7 +230,7 @@
             // 
             this.txtAddress.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.Location = new System.Drawing.Point(137, 412);
-            this.txtAddress.MaxLength = 200;
+            this.txtAddress.MaxLength = 100;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(389, 30);
             this.txtAddress.TabIndex = 5;
@@ -249,7 +251,7 @@
             this.panel2.BackColor = System.Drawing.Color.DarkOrange;
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 612);
+            this.panel2.Location = new System.Drawing.Point(0, 675);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(650, 38);
             this.panel2.TabIndex = 25;
@@ -266,14 +268,36 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "© Copyright 2020, T&&T Book Store";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DarkOrange;
+            this.label9.Location = new System.Drawing.Point(133, 455);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 24);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Phone:";
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhone.Location = new System.Drawing.Point(137, 482);
+            this.txtPhone.Mask = "(+84) 000-000-000";
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(389, 30);
+            this.txtPhone.TabIndex = 28;
+            // 
             // frmRegister
             // 
             this.AcceptButton = this.btnCreateAccount;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(650, 650);
+            this.ClientSize = new System.Drawing.Size(650, 713);
             this.ControlBox = false;
+            this.Controls.Add(this.txtPhone);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.label8);
@@ -295,6 +319,7 @@
             this.Name = "frmRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRegister";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRegister_FormClosed);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -324,5 +349,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.MaskedTextBox txtPhone;
     }
 }

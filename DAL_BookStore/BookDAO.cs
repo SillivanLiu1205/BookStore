@@ -1,6 +1,7 @@
 ﻿using DTO_BookStore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -14,34 +15,17 @@ namespace DAL_BookStore
     public class BookDAO
     {
         private static SqlConnection conn;
-        public BookDAO()
+        public static BookDAO instance;
+        public static BookDAO Instance
+        {
+            get { if (instance == null) instance = new BookDAO(); return instance; }
+            private set { instance = value; }
+        }
+
+        private BookDAO()
         {
             conn = sqlConnection.getConnection();
         }
-        //get all book
-        public DataTable getBooks()
-        {
-            string SQL = "SELECT * FROM dbo.Book";
-            SqlCommand cmd = new SqlCommand(SQL, conn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dtBook = new DataTable();
-            try
-            {
-                if(conn.State == ConnectionState.Closed)
-                {
-                    conn.Open();
-                }
-                da.Fill(dtBook);
-            } catch (SqlException se)
-            {
-                throw new Exception(se.Message);
-            } finally
-            {
-                conn.Close();
-            }
-            return dtBook;
-        }
-
         public bool AddNewBook(Book book)
         {
             bool result;
@@ -63,7 +47,8 @@ namespace DAL_BookStore
                     conn.Open();
                 }
                 result = cmd.ExecuteNonQuery() > 0;
-            }catch (SqlException se)
+            }
+            catch (SqlException se)
             {
                 throw new Exception(se.Message);
             }
@@ -87,12 +72,13 @@ namespace DAL_BookStore
             cmd.Parameters.AddWithValue("@Image", book.Image);
             try
             {
-                if(conn.State  == ConnectionState.Closed)
+                if (conn.State == ConnectionState.Closed)
                 {
                     conn.Open();
                 }
                 result = cmd.ExecuteNonQuery() > 0;
-            } catch (SqlException se)
+            }
+            catch (SqlException se)
             {
                 throw new Exception(se.Message);
             }
@@ -108,77 +94,60 @@ namespace DAL_BookStore
             cmd.Parameters.AddWithValue("@ID", BookID);
             try
             {
-                if(conn.State == ConnectionState.Closed)
+                if (conn.State == ConnectionState.Closed)
                 {
                     conn.Open();
                 }
                 result = cmd.ExecuteNonQuery() > 0;
-            } catch (SqlException se)
+            }
+            catch (SqlException se)
             {
                 throw new Exception(se.Message);
             }
             return result;
         }
 
-        public DataTable SearchByTitle(string Title, bool isLocal, int CategoryID)
+        public List<Book> GetBooks(string SearchBy, string SearchContext, string language, int CategoryID)
         {
-            string SQL = "SELECT * FROM dbo.Book WHERE Title like %@Title% AND IsLocal = @IsLocal CategoryID = @CategoryID";
-            SqlCommand cmd = new SqlCommand(SQL, conn);
-            cmd.Parameters.AddWithValue("@Title", Title);
-            cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
-            if (isLocal)
+            List<Book> BookList = new List<Book>();
+            string Sql = "SELECT * FROM dbo.Book WHERE ";
+            if (!SearchContext.Equals(string.Empty))
             {
-                cmd.Parameters.AddWithValue("@IsLocal", 1);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@IsLocal", 0);
+                Sql += SearchBy + " like %@SearchContext% AND";
             }
 
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+            if (language.Equals("Vietnamese"))
+            {
+                Sql += "IsLocal = 1 AND";
+            }
+            else if (language.Equals("English"))
+            {
+                Sql += "IsLocal = 0 AND";
+            }
+
+            if (CategoryID != null)
+            {
+                Sql += "CategoryID = @CategoryID AND";
+            }
+            Sql += "TRUE";
+            SqlCommand cmd = new SqlCommand(Sql, conn);
+            cmd.Parameters.AddWithValue("@SearchContext", SearchContext);
+            cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
             try
             {
                 if(conn.State == ConnectionState.Closed)
                 {
                     conn.Open();
                 }
-                da.Fill(dt);
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return dt;
-        }
-        public DataTable SearchByPublisher(string Publisher, bool isLocal, int CategoryID)
-        {
-            string SQL = "SELECT * FROM dbo.Book WHERE Publisher like %@Publisher% AND IsLocal = @IsLocal CategoryID = @CategoryID";
-            SqlCommand cmd = new SqlCommand(SQL, conn);
-            cmd.Parameters.AddWithValue("@Title", Publisher);
-            cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
-            if (isLocal)
-            {
-                cmd.Parameters.AddWithValue("@IsLocal", 1);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@IsLocal", 0);
-            }
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            try
-            {
-                if (conn.State == ConnectionState.Closed)
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
                 {
-                    conn.Open();
+                    while (dataReader.Read())
+                    {
+                        Book b = new Book(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetInt32(3), dataReader.GetString(4), dataReader.GetString(5), dataReader.GetInt32(7), dataReader.GetBoolean(8), dataReader.GetString(9));
+                        BookList.Add(b);
+                    }
                 }
-                da.Fill(dt);
             }
             catch (SqlException e)
             {
@@ -188,42 +157,7 @@ namespace DAL_BookStore
             {
                 conn.Close();
             }
-            return dt;
-        }
-        public DataTable SearchByAuthor(string Author, bool isLocal, int CategoryID)
-        {
-            string SQL = "SELECT * FROM dbo.Book WHERE Auhtor like %@Author% AND IsLocal = @IsLocal CategoryID = @CategoryID";
-            SqlCommand cmd = new SqlCommand(SQL, conn);
-            cmd.Parameters.AddWithValue("@Title", Author);
-            cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
-            if (isLocal)
-            {
-                cmd.Parameters.AddWithValue("@IsLocal", 1);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@IsLocal", 0);
-            }
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            try
-            {
-                if (conn.State == ConnectionState.Closed)
-                {
-                    conn.Open();
-                }
-                da.Fill(dt);
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return dt;
+            return BookList;
         }
     }
 }

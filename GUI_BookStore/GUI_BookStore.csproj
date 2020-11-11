@@ -49,11 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IViews\IHomeView.cs" />
+    <Compile Include="IViews\ILoginView.cs" />
+    <Compile Include="IViews\IRegisterView.cs" />
+    <Compile Include="IViews\IView.cs" />
+    <Compile Include="Models\IModel.cs" />
+    <Compile Include="Models\Model.cs" />
     <Compile Include="MyBookStoreDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyBookStoreDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Presenters\PHome.cs" />
+    <Compile Include="Presenters\PLogin.cs" />
+    <Compile Include="Presenters\PRegister.cs" />
+    <Compile Include="Presenters\Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Controls\C_Account.cs">
@@ -295,10 +305,6 @@
     <Content Include="Image\Logo2.png" />
     <None Include="Image\Logo1.PNG" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IView\" />
-    <Folder Include="Model\" />
-    <Folder Include="Presenters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
