@@ -78,7 +78,7 @@ namespace DAL_BookStore
         }
         public bool AddNewAccount(Account account)
         {
-            bool result;
+            bool result = false;
             string SQL = "INSERT INTO dbo.Account VALUES(@Username, @Fullname,@Password, @Role, @Address, @Phone)";
             SqlCommand cmd = new SqlCommand(SQL, conn);
             cmd.Parameters.AddWithValue("@Username", account.Username);

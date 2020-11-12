@@ -17,17 +17,18 @@ namespace GUI_BookStore.Presenters
             
         }
 
-        public void getBooks()
+        public void GetBooks(string SearchBy, string SearchContext, string Language, string CategoryName)
         {
-            List<UC_BookDetails> BookViewList = new List<UC_BookDetails>();
-            List<Book> BookList = new List<Book>();
+            List<Book> BookList = Model.getBooks(SearchBy, SearchContext, Language, CategoryName);
+            View.flpBookList.Controls.Clear();
             foreach(Book book in BookList)
             {
                 UC_BookDetails uc = new UC_BookDetails(book);
+                View.flpBookList.Controls.Add(uc);
             }
         }
 
-        public void getAllCategoryName()
+        public void GetAllCategoryName()
         {
             List<string> CategoryList = Model.getAllCategoryName();
             foreach(string c in CategoryList)

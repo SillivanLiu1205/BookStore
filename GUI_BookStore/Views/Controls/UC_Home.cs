@@ -13,16 +13,36 @@ using GUI_BookStore.Presenters;
 
 namespace GUI_BookStore.UserControls
 {
-    public partial class UC_Home : UserControl, IView
+    public partial class UC_Home : UserControl, IHomeView
     {
         private PHome homePresenter { get; set; }
         public string SearchBy => cbxSearchBy.SelectedItem.ToString();
 
         public string SearchContext => txtSearch.Text;
 
-        public string Language => clbLanguage.CheckedItems.ToString();
+        public string Language
+        {
+            get
+            {
+                foreach(string item in clbLanguage.CheckedItems)
+                {
+                    return item;
+                }
+                return null;
+            }
+        }
 
-        public string Category => clbCategory.CheckedItems.ToString();
+        public string CategoryName
+        {
+            get
+            {
+                foreach(string item in clbCategory.CheckedItems)
+                {
+                    return item;
+                }
+                return null;
+            }
+        }
 
         public UC_Home()
         {
@@ -32,18 +52,19 @@ namespace GUI_BookStore.UserControls
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            homePresenter.GetBooks(SearchBy, SearchContext, Language, CategoryName);
         }
 
         private void UC_Home_Load(object sender, EventArgs e)
         {
             cbxSearchBy.SelectedIndex = 1;
             loadCategories();
+            homePresenter.GetBooks(SearchBy, SearchContext, Language, CategoryName);
         }
 
         private void loadCategories()
         {
-            homePresenter.getAllCategoryName();
+            homePresenter.GetAllCategoryName();
         }
 
         private void clbLanguage_ItemCheck(object sender, ItemCheckEventArgs e)

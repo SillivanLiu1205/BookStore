@@ -15,9 +15,11 @@ namespace GUI_BookStore.Models
         bool addNewAccount(Account account);
 
         //BookDAO
-        List<Book> getBooks(string SearchBy, string SearchContext, string Language, int CategoryID);
+        List<Book> getBooks(string SearchBy, string SearchContext, string Language, string CategoryID);
 
         //CategoryDAO
         List<string> getAllCategoryName();
+        int getCategoryID(string CategoryName);
+        string getCategoryName(int CategoryID);
     }
 }

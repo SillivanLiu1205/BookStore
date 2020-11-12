@@ -11,6 +11,6 @@ namespace GUI_BookStore.IViews
         String SearchBy { get; }
         String SearchContext { get; }
         String Language { get; }
-        String Category { get; }
+        String CategoryName { get; }
     }
 }

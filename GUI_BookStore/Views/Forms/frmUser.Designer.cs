@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
             this.pnLeft = new System.Windows.Forms.Panel();
+            this.btnBack = new System.Windows.Forms.Button();
             this.pnSide = new System.Windows.Forms.Panel();
             this.btnAccount = new System.Windows.Forms.Button();
             this.btnYourCart = new System.Windows.Forms.Button();
@@ -57,6 +58,7 @@
             // pnLeft
             // 
             this.pnLeft.BackColor = System.Drawing.Color.DarkOrange;
+            this.pnLeft.Controls.Add(this.btnBack);
             this.pnLeft.Controls.Add(this.pnSide);
             this.pnLeft.Controls.Add(this.btnAccount);
             this.pnLeft.Controls.Add(this.btnYourCart);
@@ -66,6 +68,16 @@
             this.pnLeft.Controls.Add(this.pictureBox1);
             resources.ApplyResources(this.pnLeft, "pnLeft");
             this.pnLeft.Name = "pnLeft";
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            resources.ApplyResources(this.btnBack, "btnBack");
+            this.btnBack.ForeColor = System.Drawing.Color.White;
+            this.btnBack.Name = "btnBack";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // pnSide
             // 
@@ -203,7 +215,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUser";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.frmUser_Load);
             this.pnLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -234,6 +245,7 @@
         private System.Windows.Forms.Timer timerCollapse;
         private System.Windows.Forms.Timer timerTime;
         private System.Windows.Forms.Panel pnControl;
-        internal System.Windows.Forms.Label lbWelcome;
+        private System.Windows.Forms.Button btnBack;
+        public System.Windows.Forms.Label lbWelcome;
     }
 }

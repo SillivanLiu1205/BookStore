@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IViews\IBookDetails.cs" />
     <Compile Include="IViews\IHomeView.cs" />
     <Compile Include="IViews\ILoginView.cs" />
     <Compile Include="IViews\IRegisterView.cs" />
@@ -60,6 +61,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyBookStoreDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Presenters\PBookDetail.cs" />
     <Compile Include="Presenters\PHome.cs" />
     <Compile Include="Presenters\PLogin.cs" />
     <Compile Include="Presenters\PRegister.cs" />
@@ -289,6 +291,7 @@
     <Content Include="Image\icons8_add_book_30px.png" />
     <Content Include="Image\icons8_Add_Tag_24px.png" />
     <Content Include="Image\icons8_Admin_Settings_Male_24px.png" />
+    <Content Include="Image\icons8_back_to_32px.png" />
     <Content Include="Image\icons8_books_26px_1.png" />
     <Content Include="Image\icons8_customer_insight_30px.png" />
     <Content Include="Image\icons8_home_24px_3.png" />

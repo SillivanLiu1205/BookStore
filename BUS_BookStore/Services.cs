@@ -27,7 +27,7 @@ namespace BUS_BookStore
         }
 
         //Book
-        public List<Book> getBooks(string SearchBy, string SearchContext, string Language, int CategoryID)
+        public List<Book> getBooks(string SearchBy, string SearchContext, string Language, string CategoryID)
         {
             return BookDAO.Instance.GetBooks(SearchBy, SearchContext, Language, CategoryID);
         }
@@ -36,6 +36,14 @@ namespace BUS_BookStore
         public List<string> getAllCategoryName()
         {
             return CategoryDAO.Instance.getAllCategoryName();
+        }
+        public int getCategoryID(string CategoryName)
+        {
+            return CategoryDAO.Instance.getCategoryID(CategoryName);
+        }
+        public string getCategoryName(int CategoryID)
+        {
+            return CategoryDAO.Instance.getCategoryName(CategoryID);
         }
     }
 }

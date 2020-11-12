@@ -117,14 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnBack.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnBack.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial Narrow, 16.2pt, style=Bold, Italic</value>
+  </data>
+  <data name="btnBack.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAlBJREFUWEft
+        lz1rFFEUhpcQiKAxgtopNhoFQY2Kvf4AidiL+AEBUSEg+NEJikVQsBBigmBherExRBv1P0gUFBULRZv4
+        gRZ6fV7vO5Ddyd25s+wiQh54YHPOe+7Mbu7OzDaW+a8IIWzFi/gU5/GT1esneAGHHe8eLLob5zCXWdzl
+        8c5hkX68ib9QfMDbOIrbcb3V60M4hR9RaOY69nu5ejC4Bot3/QOv4qDbScisxmueEfo0htzOg4EBfKZp
+        eI073MqGmZ2eFdozA25VQ1gfs3iHG1yuDbMb8b0Wglsut4fgPvyN33DE5baQO4Kb/GcT1Pfid9Sae1xO
+        Q+gRissutYXcGGrxV7jS5SaoX0Ex69LSEND3XOi7nbPhzqIOrh1/1OUS9IbwM4otLpeheSlmwqRLScic
+        wcqDF5CZRnHepTI0H8dMOOjSktCvdXBBTtcJMedSGZovYyZsdqkEvdNY6+CCbPHvnXepDM0vMRNWudQE
+        9eOoA+sExlzOgvwgigWXytD8GjPJ3Twe2707gRcxk96p9E6iPgWR3lAtkN0WR8Jzl8rQzN2EJ7DWSZDL
+        2oTnYibccSkJmWI/iMqTIHM3RsO4S2Vo1r0QHcPKk6CXdyESBIpbcO6l+BRqU+Zcih+6lIbQCOpddftm
+        pDXzbusEb6Do5u14wuVqCPfhg79jcT/sdysbZg54VtzHPrfyYKD1kWwC17qdhMw61LNg549kBQy2PpQu
+        4D08jMO4wuq1ajOojNBM5w+li2GRf/NY3gqLLv5h8hZ/2jfYux8my/SORuMPYaMT6ZxYQGgAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="btnBack.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnBack.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 615</value>
+  </data>
+  <data name="btnBack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 50</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnBack.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="btnBack.Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="btnBack.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;btnBack.Name" xml:space="preserve">
+    <value>btnBack</value>
+  </data>
+  <data name="&gt;&gt;btnBack.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBack.Parent" xml:space="preserve">
+    <value>pnLeft</value>
+  </data>
+  <data name="&gt;&gt;btnBack.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="pnSide.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 204</value>
   </data>
   <data name="pnSide.Size" type="System.Drawing.Size, System.Drawing">
     <value>10, 52</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pnSide.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
@@ -138,9 +191,8 @@
     <value>pnLeft</value>
   </data>
   <data name="&gt;&gt;pnSide.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnAccount.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -186,7 +238,7 @@
     <value>pnLeft</value>
   </data>
   <data name="&gt;&gt;btnAccount.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnYourCart.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -232,7 +284,7 @@
     <value>pnLeft</value>
   </data>
   <data name="&gt;&gt;btnYourCart.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnHistory.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -279,7 +331,7 @@
     <value>pnLeft</value>
   </data>
   <data name="&gt;&gt;btnHistory.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnHome.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -323,7 +375,7 @@
     <value>pnLeft</value>
   </data>
   <data name="&gt;&gt;btnHome.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnMoveSide.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -357,7 +409,7 @@
     <value>pnLeft</value>
   </data>
   <data name="&gt;&gt;btnMoveSide.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1411,7 +1463,7 @@
     <value>pnLeft</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="pnLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>

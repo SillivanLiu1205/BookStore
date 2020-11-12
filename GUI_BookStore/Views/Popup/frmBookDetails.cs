@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DTO_BookStore;
+using GUI_BookStore.IViews;
+using GUI_BookStore.Presenters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,26 +13,30 @@ using System.Windows.Forms;
 
 namespace GUI_BookStore.Views.Popup
 {
-    public partial class frmBookDetails : Form
+    public partial class frmBookDetails : Form, IBookDetails
     {
-        public frmBookDetails()
+        private PBookDetail bookDetailPresenter;
+        public Book book { get; set; }
+
+        public frmBookDetails(Book book)
         {
             InitializeComponent();
-        }
-
-        private void bookBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bookBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.myBookStoreDataSet);
-
+            bookDetailPresenter = new PBookDetail(this);
+            this.book = book;
         }
 
         private void frmBookDetails_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'myBookStoreDataSet.Book' table. You can move, or remove it, as needed.
-            this.bookTableAdapter.Fill(this.myBookStoreDataSet.Book);
-
+            string CategoryName = bookDetailPresenter.getCategoryName(book.Category);
+            string Language = (book.IsLocalBook ? "Vietnamese" : "English");
+            lbBookDetails.Text = "Title: " + book.Title +
+                                 "\n\nPrice: " + book.Price +
+                                 "\n\nQuantity in Storage: " + book.Quantity +
+                                 "\n\nAuthor: " + book.Author +
+                                 "\n\nPublisher: " + book.Publisher +
+                                 "\n\nCategory: " + CategoryName +
+                                 "\n\nLanguage: " + Language;
+            pbxImage.Image = Image.FromFile(@"ImageData\" + book.Image);
         }
     }
 }

@@ -52,6 +52,7 @@
             // 
             this.txtSearch.BackColor = System.Drawing.Color.White;
             this.txtSearch.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
             this.txtSearch.Location = new System.Drawing.Point(273, 37);
             this.txtSearch.MaxLength = 200;
             this.txtSearch.Name = "txtSearch";
@@ -103,8 +104,8 @@
             this.cbxSearchBy.FormattingEnabled = true;
             this.cbxSearchBy.Items.AddRange(new object[] {
             "Author",
-            "Name",
-            "Publisher"});
+            "Publisher",
+            "Title"});
             this.cbxSearchBy.Location = new System.Drawing.Point(50, 39);
             this.cbxSearchBy.Name = "cbxSearchBy";
             this.cbxSearchBy.Size = new System.Drawing.Size(165, 32);
@@ -122,7 +123,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 100);
             this.panel2.MinimumSize = new System.Drawing.Size(232, 464);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(268, 534);
+            this.panel2.Size = new System.Drawing.Size(237, 534);
             this.panel2.TabIndex = 8;
             // 
             // label3
@@ -142,7 +143,7 @@
             this.clbCategory.FormattingEnabled = true;
             this.clbCategory.Location = new System.Drawing.Point(3, 152);
             this.clbCategory.Name = "clbCategory";
-            this.clbCategory.Size = new System.Drawing.Size(262, 304);
+            this.clbCategory.Size = new System.Drawing.Size(231, 104);
             this.clbCategory.TabIndex = 3;
             this.clbCategory.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbCategory_ItemCheck);
             // 
@@ -166,13 +167,13 @@
             "English"});
             this.clbLanguage.Location = new System.Drawing.Point(3, 56);
             this.clbLanguage.Name = "clbLanguage";
-            this.clbLanguage.Size = new System.Drawing.Size(262, 54);
+            this.clbLanguage.Size = new System.Drawing.Size(231, 54);
             this.clbLanguage.TabIndex = 0;
             this.clbLanguage.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbLanguage_ItemCheck);
             // 
             // splitter1
             // 
-            this.splitter1.Location = new System.Drawing.Point(268, 100);
+            this.splitter1.Location = new System.Drawing.Point(237, 100);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(3, 534);
             this.splitter1.TabIndex = 9;
@@ -182,17 +183,18 @@
             // 
             this.panel3.Controls.Add(this.flpBookList);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(271, 100);
+            this.panel3.Location = new System.Drawing.Point(240, 100);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(689, 534);
+            this.panel3.Size = new System.Drawing.Size(720, 534);
             this.panel3.TabIndex = 10;
             // 
             // flpBookList
             // 
+            this.flpBookList.AutoScroll = true;
             this.flpBookList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpBookList.Location = new System.Drawing.Point(0, 0);
             this.flpBookList.Name = "flpBookList";
-            this.flpBookList.Size = new System.Drawing.Size(689, 534);
+            this.flpBookList.Size = new System.Drawing.Size(720, 534);
             this.flpBookList.TabIndex = 0;
             // 
             // UC_Home

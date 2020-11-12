@@ -28,7 +28,7 @@ namespace DAL_BookStore
         }
         public bool AddNewBook(Book book)
         {
-            bool result;
+            bool result = false;
             string SQL = "INSERT INTO Book VALUES(@ID, @Title,@Price, @Quantity, @Author, @Publisher, @CategoryID, @IsLocal, @Image)";
             SqlCommand cmd = new SqlCommand(SQL, conn);
             cmd.Parameters.AddWithValue("@ID", book.BookID);
@@ -58,7 +58,7 @@ namespace DAL_BookStore
         //Update Book
         public bool UpdateBook(Book book)
         {
-            bool result;
+            bool result = false;
             string SQL = "UPDATE Books SET @ID, @Title,@Price, @Quantity, @Author, @Publisher, @CategoryID, @IsLocal, @Image";
             SqlCommand cmd = new SqlCommand(SQL, conn);
             cmd.Parameters.AddWithValue("@ID", book.BookID);
@@ -88,7 +88,7 @@ namespace DAL_BookStore
         //Delete Book
         public bool DeleteBook(int BookID)
         {
-            bool result;
+            bool result = false;
             string SQL = "DELETE FROM Book WHERE BookID = @ID";
             SqlCommand cmd = new SqlCommand(SQL, conn);
             cmd.Parameters.AddWithValue("@ID", BookID);
@@ -107,32 +107,31 @@ namespace DAL_BookStore
             return result;
         }
 
-        public List<Book> GetBooks(string SearchBy, string SearchContext, string language, int CategoryID)
+        public List<Book> GetBooks(string SearchBy, string SearchContext, string language, string CategoryName)
         {
             List<Book> BookList = new List<Book>();
-            string Sql = "SELECT * FROM dbo.Book WHERE ";
+            int CategoryID = CategoryDAO.Instance.getCategoryID(CategoryName);
+            string Sql = "SELECT* FROM dbo.Book WHERE ";
             if (!SearchContext.Equals(string.Empty))
             {
-                Sql += SearchBy + " like %@SearchContext% AND";
+                Sql += SearchBy + " LIKE '%" + SearchContext + "%' AND ";
             }
 
-            if (language.Equals("Vietnamese"))
+            if (language == "Vietnamese")
             {
-                Sql += "IsLocal = 1 AND";
+                Sql += "IsLocal = 1 AND ";
             }
-            else if (language.Equals("English"))
+            else if (language == "English")
             {
-                Sql += "IsLocal = 0 AND";
+                Sql += "IsLocal = 0 AND ";
+            }        
+            if (CategoryID > 0)
+            {
+                Sql += "CategoryID = " + CategoryID + " AND ";
             }
+            Sql += "1=1";
 
-            if (CategoryID != null)
-            {
-                Sql += "CategoryID = @CategoryID AND";
-            }
-            Sql += "TRUE";
             SqlCommand cmd = new SqlCommand(Sql, conn);
-            cmd.Parameters.AddWithValue("@SearchContext", SearchContext);
-            cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
             try
             {
                 if(conn.State == ConnectionState.Closed)
@@ -144,7 +143,17 @@ namespace DAL_BookStore
                 {
                     while (dataReader.Read())
                     {
-                        Book b = new Book(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetInt32(3), dataReader.GetString(4), dataReader.GetString(5), dataReader.GetInt32(7), dataReader.GetBoolean(8), dataReader.GetString(9));
+                        int BookID = dataReader.GetInt32(0);
+                        string Title = dataReader.GetString(1);
+                        int Price = dataReader.GetInt32(2);
+                        int Quantity = dataReader.GetInt32(3);
+                        string Author = dataReader.GetString(4);
+                        string Publisher = dataReader.GetString(5);
+                        int Category = dataReader.GetInt32(6);
+                        bool IsLocal = dataReader.GetBoolean(7);
+                        string Image = dataReader.GetString(8);
+
+                        Book b = new Book(BookID, Title, Price, Quantity, Author, Publisher, CategoryID, IsLocal, Image);
                         BookList.Add(b);
                     }
                 }

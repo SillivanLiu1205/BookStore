@@ -27,11 +27,13 @@ namespace GUI_BookStore.Presenters
             {
                 if (account.Role == "Admin")
                 {
-                    view = new frmAdmin(account);
+                    view = frmAdmin.Instance;
+                    frmAdmin.Instance.account = account;
                 }
                 else if (account.Role == "User")
                 {
-                    view = new frmUser(account);
+                    view = frmUser.Instance;
+                    frmUser.Instance.account = account;
                 }
                 else throw new Exception("Username or Password is not correct");
             }catch (Exception e)

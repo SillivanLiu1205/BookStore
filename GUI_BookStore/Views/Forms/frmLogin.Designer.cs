@@ -145,9 +145,9 @@
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnClose;
+            resources.ApplyResources(this, "$this");
             this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.llbSignUp);
@@ -160,11 +160,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmLogin";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);

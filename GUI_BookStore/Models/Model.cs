@@ -24,7 +24,7 @@ namespace GUI_BookStore.Models
         }
 
         //Book
-        public List<Book> getBooks(string SearchBy, string SearchContext, string Language, int CategoryID)
+        public List<Book> getBooks(string SearchBy, string SearchContext, string Language, string CategoryID)
         {
             return services.getBooks(SearchBy, SearchContext, Language, CategoryID);
         }
@@ -33,6 +33,14 @@ namespace GUI_BookStore.Models
         public List<string> getAllCategoryName()
         {
             return services.getAllCategoryName();
+        }
+        public int getCategoryID(string CategoryName)
+        {
+            return services.getCategoryID(CategoryName);
+        }
+        public string getCategoryName(int CategoryID)
+        {
+            return services.getCategoryName(CategoryID);
         }
     }
 }
