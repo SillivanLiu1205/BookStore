@@ -14,103 +14,163 @@ namespace DAL_BookStore
 {
     public class BookDAO
     {
-        private static SqlConnection conn;
-        public static BookDAO instance;
+        private static SqlConnection Conn;
+        public static BookDAO _Instance;
         public static BookDAO Instance
         {
-            get { if (instance == null) instance = new BookDAO(); return instance; }
-            private set { instance = value; }
+            get { if (_Instance == null) _Instance = new BookDAO(); return _Instance; }
+            private set { _Instance = value; }
         }
 
         private BookDAO()
         {
-            conn = sqlConnection.getConnection();
+            Conn = MySqlConnection.GetConnection();
         }
         public bool AddNewBook(Book book)
         {
-            bool result = false;
-            string SQL = "INSERT INTO Book VALUES(@ID, @Title,@Price, @Quantity, @Author, @Publisher, @CategoryID, @IsLocal, @Image)";
-            SqlCommand cmd = new SqlCommand(SQL, conn);
-            cmd.Parameters.AddWithValue("@ID", book.BookID);
-            cmd.Parameters.AddWithValue("@Title", book.Title);
-            cmd.Parameters.AddWithValue("@Price", book.Price);
-            cmd.Parameters.AddWithValue("@Quantity", book.Quantity);
-            cmd.Parameters.AddWithValue("@Author", book.Author);
-            cmd.Parameters.AddWithValue("@Pulisher", book.Publisher);
-            cmd.Parameters.AddWithValue("@CategoryID", book.Category);
-            cmd.Parameters.AddWithValue("@IsLocal", book.IsLocalBook);
-            cmd.Parameters.AddWithValue("@Image", book.Image);
+            bool Result = false;
+            string SQL = "INSERT INTO dbo.Book VALUES(@ID, @Title,@Price, @Quantity, @Author, @Publisher, @CategoryID, @IsLocal, @Image)";
+            SqlCommand Cmd = new SqlCommand(SQL, Conn);
+            Cmd.Parameters.AddWithValue("@ID", book.BookID);
+            Cmd.Parameters.AddWithValue("@Title", book.Title);
+            Cmd.Parameters.AddWithValue("@Price", book.Price);
+            Cmd.Parameters.AddWithValue("@Quantity", book.Quantity);
+            Cmd.Parameters.AddWithValue("@Author", book.Author);
+            Cmd.Parameters.AddWithValue("@Pulisher", book.Publisher);
+            Cmd.Parameters.AddWithValue("@CategoryID", book.Category);
+            Cmd.Parameters.AddWithValue("@IsLocal", book.IsLocalBook);
+            Cmd.Parameters.AddWithValue("@Image", book.Image);
             try
             {
-                if (conn.State == ConnectionState.Closed)
+                if (Conn.State == ConnectionState.Closed)
                 {
-                    conn.Open();
+                    Conn.Open();
                 }
-                result = cmd.ExecuteNonQuery() > 0;
+                Result = Cmd.ExecuteNonQuery() > 0;
             }
             catch (SqlException se)
             {
                 throw new Exception(se.Message);
             }
-            return result;
+            finally
+            {
+                Conn.Close();
+            }
+            return Result;
         }
 
-        //Update Book
         public bool UpdateBook(Book book)
         {
-            bool result = false;
-            string SQL = "UPDATE Books SET @ID, @Title,@Price, @Quantity, @Author, @Publisher, @CategoryID, @IsLocal, @Image";
-            SqlCommand cmd = new SqlCommand(SQL, conn);
-            cmd.Parameters.AddWithValue("@ID", book.BookID);
-            cmd.Parameters.AddWithValue("@Title", book.Title);
-            cmd.Parameters.AddWithValue("@Price", book.Price);
-            cmd.Parameters.AddWithValue("@Quantity", book.Quantity);
-            cmd.Parameters.AddWithValue("@Author", book.Author);
-            cmd.Parameters.AddWithValue("@Pulisher", book.Publisher);
-            cmd.Parameters.AddWithValue("@CategoryID", book.Category);
-            cmd.Parameters.AddWithValue("@IsLocal", book.IsLocalBook);
-            cmd.Parameters.AddWithValue("@Image", book.Image);
+            bool Result = false;
+            string SQL = "UPDATE Books SET "+
+                         "BookID = @ID, "+
+                         " Title = @Title, "+
+                         "Price = @Price, "+
+                         "Quantity = @Quantity, "+
+                         "Author = @Author, "+
+                         "Publisher = @Publisher, "+
+                         "CategoryID = @CategoryID, "+
+                         "IsLocal = @IsLocal, "+
+                         "Image = @Image";
+            SqlCommand Cmd = new SqlCommand(SQL, Conn);
+            Cmd.Parameters.AddWithValue("@ID", book.BookID);
+            Cmd.Parameters.AddWithValue("@Title", book.Title);
+            Cmd.Parameters.AddWithValue("@Price", book.Price);
+            Cmd.Parameters.AddWithValue("@Quantity", book.Quantity);
+            Cmd.Parameters.AddWithValue("@Author", book.Author);
+            Cmd.Parameters.AddWithValue("@Pulisher", book.Publisher);
+            Cmd.Parameters.AddWithValue("@CategoryID", book.Category);
+            Cmd.Parameters.AddWithValue("@IsLocal", book.IsLocalBook);
+            Cmd.Parameters.AddWithValue("@Image", book.Image);
             try
             {
-                if (conn.State == ConnectionState.Closed)
+                if (Conn.State == ConnectionState.Closed)
                 {
-                    conn.Open();
+                    Conn.Open();
                 }
-                result = cmd.ExecuteNonQuery() > 0;
+                Result = Cmd.ExecuteNonQuery() > 0;
             }
             catch (SqlException se)
             {
                 throw new Exception(se.Message);
             }
-            return result;
+            finally
+            {
+                Conn.Close();
+            }
+            return Result;
         }
 
-        //Delete Book
         public bool DeleteBook(int BookID)
         {
-            bool result = false;
-            string SQL = "DELETE FROM Book WHERE BookID = @ID";
-            SqlCommand cmd = new SqlCommand(SQL, conn);
-            cmd.Parameters.AddWithValue("@ID", BookID);
+            bool Result = false;
+            string Sql = "DELETE FROM dbo.Book WHERE BookID = @ID";
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
+            Cmd.Parameters.AddWithValue("@ID", BookID);
             try
             {
-                if (conn.State == ConnectionState.Closed)
+                if (Conn.State == ConnectionState.Closed)
                 {
-                    conn.Open();
+                    Conn.Open();
                 }
-                result = cmd.ExecuteNonQuery() > 0;
+                Result = Cmd.ExecuteNonQuery() > 0;
             }
             catch (SqlException se)
             {
                 throw new Exception(se.Message);
             }
-            return result;
+            finally
+            {
+                Conn.Close();
+            }
+            return Result;
+        }
+
+        public Book FindBookByID(int BookID)
+        {
+            Book book = null;
+            string Sql = "SELECT * FROM dbo.Book WHERE BookID = @ID";
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
+            Cmd.Parameters.AddWithValue("@ID", BookID);
+            try
+            {
+                if(Conn.State == ConnectionState.Closed)
+                {
+                    Conn.Open();
+                }
+                SqlDataReader DataReader = Cmd.ExecuteReader();
+                if (DataReader.HasRows)
+                {
+                    while (DataReader.Read())
+                    {
+                        string Title = DataReader.GetString(1);
+                        int Price = DataReader.GetInt32(2);
+                        int Quantity = DataReader.GetInt32(3);
+                        string Author = DataReader.GetString(4);
+                        string Publisher = DataReader.GetString(5);
+                        int CategoryID = DataReader.GetInt32(6);
+                        bool IsLocal = DataReader.GetBoolean(7);
+                        string Image = DataReader.GetString(8);
+
+                        Book b = new Book(BookID, Title, Price, Quantity, Author, Publisher, CategoryID, IsLocal, Image);
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            return book;
         }
 
         public List<Book> GetBooks(string SearchBy, string SearchContext, string language, string CategoryName)
         {
             List<Book> BookList = new List<Book>();
-            int CategoryID = CategoryDAO.Instance.getCategoryID(CategoryName);
+            int CategoryID = CategoryDAO.Instance.GetCategoryID(CategoryName);
             string Sql = "SELECT* FROM dbo.Book WHERE ";
             if (!SearchContext.Equals(string.Empty))
             {
@@ -131,27 +191,27 @@ namespace DAL_BookStore
             }
             Sql += "1=1";
 
-            SqlCommand cmd = new SqlCommand(Sql, conn);
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
             try
             {
-                if(conn.State == ConnectionState.Closed)
+                if(Conn.State == ConnectionState.Closed)
                 {
-                    conn.Open();
+                    Conn.Open();
                 }
-                SqlDataReader dataReader = cmd.ExecuteReader();
-                if (dataReader.HasRows)
+                SqlDataReader DataReader = Cmd.ExecuteReader();
+                if (DataReader.HasRows)
                 {
-                    while (dataReader.Read())
+                    while (DataReader.Read())
                     {
-                        int BookID = dataReader.GetInt32(0);
-                        string Title = dataReader.GetString(1);
-                        int Price = dataReader.GetInt32(2);
-                        int Quantity = dataReader.GetInt32(3);
-                        string Author = dataReader.GetString(4);
-                        string Publisher = dataReader.GetString(5);
-                        int Category = dataReader.GetInt32(6);
-                        bool IsLocal = dataReader.GetBoolean(7);
-                        string Image = dataReader.GetString(8);
+                        int BookID = DataReader.GetInt32(0);
+                        string Title = DataReader.GetString(1);
+                        int Price = DataReader.GetInt32(2);
+                        int Quantity = DataReader.GetInt32(3);
+                        string Author = DataReader.GetString(4);
+                        string Publisher = DataReader.GetString(5);
+                        int Category = DataReader.GetInt32(6);
+                        bool IsLocal = DataReader.GetBoolean(7);
+                        string Image = DataReader.GetString(8);
 
                         Book b = new Book(BookID, Title, Price, Quantity, Author, Publisher, CategoryID, IsLocal, Image);
                         BookList.Add(b);
@@ -164,7 +224,7 @@ namespace DAL_BookStore
             }
             finally
             {
-                conn.Close();
+                Conn.Close();
             }
             return BookList;
         }

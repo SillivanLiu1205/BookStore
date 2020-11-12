@@ -17,33 +17,84 @@ namespace BUS_BookStore
         }
 
         //Account
-        public Account checkLogin (string Username, string Password)
+        public Account CheckLogin (string Username, string Password)
         {
-            return AccountDAO.Instance.checkLogin(Username, Password);
+            return AccountDAO.Instance.CheckLogin(Username, Password);
         }
-        public bool addNewAccount(Account account)
+        public bool AddNewAccount(Account Account)
         {
-            return AccountDAO.Instance.AddNewAccount(account);
+            return AccountDAO.Instance.AddNewAccount(Account);
+        }
+        public bool UpdateAccount(Account NewAccount)
+        {
+            return AccountDAO.Instance.UpdateAccount(NewAccount);
         }
 
         //Book
-        public List<Book> getBooks(string SearchBy, string SearchContext, string Language, string CategoryID)
+        public List<Book> GetBooks(string SearchBy, string SearchContext, string Language, string CategoryID)
         {
             return BookDAO.Instance.GetBooks(SearchBy, SearchContext, Language, CategoryID);
         }
-
+        public Book FindBookByBookID(int BookID)
+        {
+            return BookDAO.Instance.FindBookByID(BookID);
+        }
+        public bool UpdateBook(Book book)
+        {
+            return BookDAO.Instance.UpdateBook(book);
+        }
+        public bool DeleteBook(int BookID)
+        {
+            return BookDAO.Instance.DeleteBook(BookID);
+        }
+        public bool AddNewBook (Book book)
+        {
+            return BookDAO.Instance.AddNewBook(book);
+        }
         //Category
-        public List<string> getAllCategoryName()
+        public List<string> GetAllCategoryName()
         {
-            return CategoryDAO.Instance.getAllCategoryName();
+            return CategoryDAO.Instance.GetAllCategoryName();
         }
-        public int getCategoryID(string CategoryName)
+        public int GetCategoryID(string CategoryName)
         {
-            return CategoryDAO.Instance.getCategoryID(CategoryName);
+            return CategoryDAO.Instance.GetCategoryID(CategoryName);
         }
-        public string getCategoryName(int CategoryID)
+        public string GetCategoryName(int CategoryID)
         {
-            return CategoryDAO.Instance.getCategoryName(CategoryID);
+            return CategoryDAO.Instance.GetCategoryName(CategoryID);
+        }
+
+        //Cart
+        public Cart GetNotDoneCartByUsername(string Username)
+        {
+            return CartDAO.Instance.GetNotDoneCartByUsername(Username);
+        }
+        public List<Cart> GetAllCartByUserame(string Username)
+        {
+            return CartDAO.Instance.GetAllCartByUserame(Username);
+        }
+        public List<Cart> GetAllCartByDateMothYear(DateTime Date, string SearchBy)
+        {
+            return CartDAO.Instance.GetAllCartByDateMothYear(Date, SearchBy);
+        }
+
+        //CartDetail
+        public List<CartDetail> GetCartDetailByCartID(int CartID)
+        {
+            return CartDetailDAO.Instance.GetCartDetailByCartID(CartID);
+        }
+        public bool DeleteCartDetail(int CartDetailID)
+        {
+            return CartDetailDAO.Instance.DeleteCartDetail(CartDetailID);
+        }
+        public bool UpdateCartDetailQuantity(int CartDetailID, int NewQuantity)
+        {
+            return CartDetailDAO.Instance.UpdateCartDetailQuantity(CartDetailID, NewQuantity);
+        }
+        public bool AddNewCartDeailt(CartDetail cartDetail)
+        {
+            return CartDetailDAO.Instance.AddNewCartDeailt(cartDetail);
         }
     }
 }

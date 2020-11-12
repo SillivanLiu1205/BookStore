@@ -37,15 +37,12 @@
             this.btnSearch = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.flpBookList = new System.Windows.Forms.FlowLayoutPanel();
-            this.myBookStoreDataSet = new GUI_BookStore.MyBookStoreDataSet();
             this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bookTableAdapter = new GUI_BookStore.MyBookStoreDataSetTableAdapters.BookTableAdapter();
-            this.tableAdapterManager = new GUI_BookStore.MyBookStoreDataSetTableAdapters.TableAdapterManager();
+            this.dgvBookList = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myBookStoreDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBookList)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -147,43 +144,25 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // flpBookList
+            // dgvBookList
             // 
-            this.flpBookList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpBookList.Location = new System.Drawing.Point(0, 94);
-            this.flpBookList.Name = "flpBookList";
-            this.flpBookList.Size = new System.Drawing.Size(960, 540);
-            this.flpBookList.TabIndex = 1;
-            // 
-            // myBookStoreDataSet
-            // 
-            this.myBookStoreDataSet.DataSetName = "MyBookStoreDataSet";
-            this.myBookStoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bookBindingSource
-            // 
-            this.bookBindingSource.DataMember = "Book";
-            this.bookBindingSource.DataSource = this.myBookStoreDataSet;
-            // 
-            // bookTableAdapter
-            // 
-            this.bookTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AccountTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BookTableAdapter = this.bookTableAdapter;
-            this.tableAdapterManager.CartDetailTableAdapter = null;
-            this.tableAdapterManager.CartTableAdapter = null;
-            this.tableAdapterManager.CategoryTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = GUI_BookStore.MyBookStoreDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.dgvBookList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBookList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBookList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBookList.GridColor = System.Drawing.Color.DarkOrange;
+            this.dgvBookList.Location = new System.Drawing.Point(0, 94);
+            this.dgvBookList.Name = "dgvBookList";
+            this.dgvBookList.RowHeadersWidth = 51;
+            this.dgvBookList.RowTemplate.Height = 24;
+            this.dgvBookList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBookList.Size = new System.Drawing.Size(960, 540);
+            this.dgvBookList.TabIndex = 1;
             // 
             // UC_ManageBook
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.flpBookList);
+            this.Controls.Add(this.dgvBookList);
             this.Controls.Add(this.panel1);
             this.Name = "UC_ManageBook";
             this.Size = new System.Drawing.Size(960, 634);
@@ -191,8 +170,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myBookStoreDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBookList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -206,10 +185,7 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnNewBook;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.FlowLayoutPanel flpBookList;
-        private MyBookStoreDataSet myBookStoreDataSet;
         private System.Windows.Forms.BindingSource bookBindingSource;
-        private MyBookStoreDataSetTableAdapters.BookTableAdapter bookTableAdapter;
-        private MyBookStoreDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        internal System.Windows.Forms.DataGridView dgvBookList;
     }
 }

@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace GUI_BookStore.IViews
 {
-    public interface IBookDetails : IView
+    public interface ICartDetail : IView
     {
-        Book _book { get; set; }
     }
 }

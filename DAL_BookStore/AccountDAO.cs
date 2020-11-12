@@ -13,31 +13,31 @@ namespace DAL_BookStore
 {
     public class AccountDAO
     {
-        private static SqlConnection conn;
-        public static AccountDAO instance;
+        private static SqlConnection Conn;
+        public static AccountDAO _Instance;
         public static AccountDAO Instance
         {
-            get { if (instance == null) instance = new AccountDAO(); return instance; }
-            private set { instance = value; }
+            get { if (_Instance == null) _Instance = new AccountDAO(); return _Instance; }
+            private set { _Instance = value; }
         }
         private AccountDAO()
         {
-            conn = sqlConnection.getConnection();
+            Conn = MySqlConnection.GetConnection();
         }
 
-        public DataTable getAccounts()
+        public DataTable GetAccounts()
         {
             string Sql = "SELECT * FROM dbo.Account";
-            SqlCommand cmd = new SqlCommand(Sql, conn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
+            SqlDataAdapter Da = new SqlDataAdapter(Cmd);
+            DataTable Dt = new DataTable();
             try
             {
-                if(conn.State == ConnectionState.Closed)
+                if(Conn.State == ConnectionState.Closed)
                 {
-                    conn.Open();
+                    Conn.Open();
                 }
-                da.Fill(dt);                
+                Da.Fill(Dt);                
             }
             catch (SqlException e)
             {
@@ -45,61 +45,109 @@ namespace DAL_BookStore
             }
             finally
             {
-                conn.Close();
+                Conn.Close();
             }
-            return dt;
+            return Dt;
         }
-        public Account checkLogin(string Username, string Password)
+        public Account CheckLogin(string Username, string Password)
         {
-            Account account = null;
+            Account Account = null;
             string Sql = "SELECT * FROM dbo.Account WHERE Username = @Username AND Password = @Password";
-            SqlCommand cmd = new SqlCommand(Sql, conn);
-            cmd.Parameters.AddWithValue("@Username", Username);
-            cmd.Parameters.AddWithValue("@Password", Password);
-            if(conn.State == ConnectionState.Closed)
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
+            Cmd.Parameters.AddWithValue("@Username", Username);
+            Cmd.Parameters.AddWithValue("@Password", Password);
+            try
             {
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                if (Conn.State == ConnectionState.Closed)
                 {
-                    account = new Account();
-                    while (reader.Read())
+                    Conn.Open();
+                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    if (Reader.HasRows)
                     {
-                        account.Username = reader.GetString(0);
-                        account.Fullname = reader.GetString(1);
-                        account.Password = reader.GetString(2);
-                        account.Role = reader.GetString(3);
-                        account.Address = reader.GetString(4);
-                        account.Phone = reader.GetString(5);
+                        Account = new Account();
+                        while (Reader.Read())
+                        {
+                            Account.Username = Reader.GetString(0);
+                            Account.Fullname = Reader.GetString(1);
+                            Account.Password = Reader.GetString(2);
+                            Account.Role = Reader.GetString(3);
+                            Account.Address = Reader.GetString(4);
+                            Account.Phone = Reader.GetString(5);
+                        }
                     }
                 }
             }
-            return account;
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            return Account;
         }
-        public bool AddNewAccount(Account account)
+        public bool AddNewAccount(Account NewAccount)
         {
-            bool result = false;
+            bool Result = false;
             string SQL = "INSERT INTO dbo.Account VALUES(@Username, @Fullname,@Password, @Role, @Address, @Phone)";
-            SqlCommand cmd = new SqlCommand(SQL, conn);
-            cmd.Parameters.AddWithValue("@Username", account.Username);
-            cmd.Parameters.AddWithValue("@Fullname", account.Fullname);
-            cmd.Parameters.AddWithValue("@Password", account.Password);
-            cmd.Parameters.AddWithValue("@Role", account.Role);
-            cmd.Parameters.AddWithValue("@Address", account.Address);
-            cmd.Parameters.AddWithValue("@Phone", account.Phone);            
+            SqlCommand Cmd = new SqlCommand(SQL, Conn);
+            Cmd.Parameters.AddWithValue("@Username", NewAccount.Username);
+            Cmd.Parameters.AddWithValue("@Fullname", NewAccount.Fullname);
+            Cmd.Parameters.AddWithValue("@Password", NewAccount.Password);
+            Cmd.Parameters.AddWithValue("@Role", NewAccount.Role);
+            Cmd.Parameters.AddWithValue("@Address", NewAccount.Address);
+            Cmd.Parameters.AddWithValue("@Phone", NewAccount.Phone);            
             try
             {
-                if (conn.State == ConnectionState.Closed)
+                if (Conn.State == ConnectionState.Closed)
                 {
-                    conn.Open();
+                    Conn.Open();
                 }
-                result = cmd.ExecuteNonQuery() > 0;
+                Result = Cmd.ExecuteNonQuery() > 0;
             }
             catch (SqlException se)
             {
                 throw new Exception(se.Message);
             }
-            return result;
+            finally
+            {
+                Conn.Close();
+            }
+            return Result;
+        }
+        public bool UpdateAccount(Account NewAccount)
+        {
+            bool Result = false;
+            string Sql = "UPDATE dbo.Account SET " +
+                         "FullName = @Fullname, " +
+                         "Password = @Password, " +
+                         "Address = @Address, " +
+                         "Phone = @Phone " +
+                         "WHERE Username = @Username";
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
+            Cmd.Parameters.AddWithValue("@Fullname", NewAccount.Fullname);
+            Cmd.Parameters.AddWithValue("@Password", NewAccount.Password);
+            Cmd.Parameters.AddWithValue("@Address", NewAccount.Address);
+            Cmd.Parameters.AddWithValue("@Phone", NewAccount.Address);
+            Cmd.Parameters.AddWithValue("@Username", NewAccount.Address);
+            try
+            {
+                if(Conn.State == ConnectionState.Closed)
+                {
+                    Conn.Open();
+                }
+                Result = Cmd.ExecuteNonQuery() > 0;
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            return Result;
         }
         
     }

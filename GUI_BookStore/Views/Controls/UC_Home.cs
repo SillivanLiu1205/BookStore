@@ -15,7 +15,7 @@ namespace GUI_BookStore.UserControls
 {
     public partial class UC_Home : UserControl, IHomeView
     {
-        private PHome homePresenter { get; set; }
+        private PHome HomePresenter { get; set; }
         public string SearchBy => cbxSearchBy.SelectedItem.ToString();
 
         public string SearchContext => txtSearch.Text;
@@ -44,27 +44,26 @@ namespace GUI_BookStore.UserControls
             }
         }
 
+        public FlowLayoutPanel FlowPanel { get { return flpBookList; } }
+
+        public CheckedListBox CheckedList { get { return clbCategory; } }
+
         public UC_Home()
         {
             InitializeComponent();
-            homePresenter = new PHome(this);
+            HomePresenter = new PHome(this);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            homePresenter.GetBooks(SearchBy, SearchContext, Language, CategoryName);
+            HomePresenter.GetBooks(SearchBy, SearchContext, Language, CategoryName);
         }
 
         private void UC_Home_Load(object sender, EventArgs e)
         {
             cbxSearchBy.SelectedIndex = 1;
-            loadCategories();
-            homePresenter.GetBooks(SearchBy, SearchContext, Language, CategoryName);
-        }
-
-        private void loadCategories()
-        {
-            homePresenter.GetAllCategoryName();
+            LoadCategories();
+            HomePresenter.GetBooks(SearchBy, SearchContext, Language, CategoryName);
         }
 
         private void clbLanguage_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -82,5 +81,11 @@ namespace GUI_BookStore.UserControls
                 if (i != e.Index) clbCategory.SetItemChecked(i, false);
             }
         }
+
+        private void LoadCategories()
+        {
+            HomePresenter.GetAllCategoryName();
+        }
+
     }
 }

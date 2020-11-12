@@ -8,31 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DTO_BookStore;
-using GUI_BookStore.UserControls;
-using GUI_BookStore.UserForms;
+using GUI_BookStore.IViews;
+using GUI_BookStore.Presenters;
 
 namespace GUI_BookStore.Views.Popup
 {
-    public partial class UC_BookDetails : UserControl
+    public partial class UC_CartDetail : UserControl, ICartDetail
     {
-        Book book { get; set; }
-        public UC_BookDetails(Book book)
+        private PCartDetail CartDetailPresenter;
+        public CartDetail cartDetail { get; set; }
+        public Book book { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public UC_CartDetail(CartDetail cartDetail)
         {
             InitializeComponent();
-            this.book = book;
+            this.cartDetail = cartDetail;
+            CartDetailPresenter = new PCartDetail(this);
         }
 
         private void UC_BookDetails_Load(object sender, EventArgs e)
         {
-            this.ptbBok.Image = Image.FromFile(@"ImageData\"+book.Image);
-            lbTitle.Text = book.Title;
-            lbPrice.Text = book.Price.ToString()+" đ";
-        }
-
-        private void LoadDetailsForm()
-        {
-            frmBookDetails frm = new frmBookDetails(this.book);
-            frmUser.Instance.loadPopupForm(frm);
+            this.lbTitle
         }
 
         private void ptbBok_Click(object sender, EventArgs e)
@@ -48,6 +44,10 @@ namespace GUI_BookStore.Views.Popup
         private void ptbBok_MouseLeave(object sender, EventArgs e)
         {
             this.BackColor = Color.White;
+        }
+        private void LoadBookDetail()
+        {
+            book = 
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DTO_BookStore;
 using GUI_BookStore.IViews;
+using GUI_BookStore.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace GUI_BookStore.Presenters
 {
-    public class PBookDetail : Presenter<IBookDetails>
+    public class PYourCart : Presenter<IYourCart>
     {
-        public PBookDetail(IBookDetails view) : base(view)
+        public PYourCart(IYourCart view) : base(view)
         {
         }
-
-        public string GetCategoryName(int CategoryID)
+        public void LoadCartDetail(int CartID)
         {
-            return Model.GetCategoryName(CategoryID);
+            List<CartDetail> CartDetailList = mode
         }
     }
 }

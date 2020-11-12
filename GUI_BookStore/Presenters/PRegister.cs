@@ -14,7 +14,7 @@ namespace GUI_BookStore.Presenters
         {
         }
 
-        public bool addNewAccount()
+        public bool AddNewAccount()
         {
             string Username = View.Username;
             string Fullname = View.Fullname;
@@ -26,11 +26,11 @@ namespace GUI_BookStore.Presenters
 
             if (Password.Equals(ConfirmPassword))
             {
-                return Model.addNewAccount(new Account(Username, Fullname, Password, Role, Address, Phone));
+                return Model.AddNewAccount(new Account(Username, Fullname, Password, Role, Address, Phone));
             }
             else
             {
-                View.message = "Password and Confirm Password is not equal";
+                View.Message = "Password and Confirm Password is not equal";
                 return false;
             }
         }

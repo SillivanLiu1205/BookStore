@@ -27,7 +27,7 @@ namespace GUI_BookStore.Views.Popup
 
         private void frmBookDetails_Load(object sender, EventArgs e)
         {
-            string CategoryName = bookDetailPresenter.getCategoryName(book.Category);
+            string CategoryName = bookDetailPresenter.GetCategoryName(book.Category);
             string Language = (book.IsLocalBook ? "Vietnamese" : "English");
             lbBookDetails.Text = "Title: " + book.Title +
                                  "\n\nPrice: " + book.Price +

@@ -54,6 +54,7 @@
     <Compile Include="IViews\ILoginView.cs" />
     <Compile Include="IViews\IRegisterView.cs" />
     <Compile Include="IViews\IView.cs" />
+    <Compile Include="IViews\IYourCart.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="MyBookStoreDataSet.Designer.cs">

@@ -35,6 +35,7 @@
             this.lbSubtotal = new System.Windows.Forms.Label();
             this.dgvCartDetails = new System.Windows.Forms.DataGridView();
             this.bsCart = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCartDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCart)).BeginInit();
@@ -53,6 +54,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnOrder);
             this.panel1.Controls.Add(this.lbSubtotal);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -106,6 +108,20 @@
             this.dgvCartDetails.Size = new System.Drawing.Size(960, 550);
             this.dgvCartDetails.TabIndex = 4;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkOrange;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial Narrow", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 84);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Delete";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // UC_YourCart
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -117,6 +133,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "UC_YourCart";
             this.Size = new System.Drawing.Size(960, 634);
+            this.Load += new System.EventHandler(this.UC_YourCart_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCartDetails)).EndInit();
@@ -133,5 +150,6 @@
         private System.Windows.Forms.BindingSource bsCart;
         private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Label lbSubtotal;
+        private System.Windows.Forms.Button button1;
     }
 }

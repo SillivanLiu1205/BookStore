@@ -15,6 +15,6 @@ namespace GUI_BookStore.IViews
         string Role { get; }
         string Address { get; }
         string Phone { get; }
-        string message { get; set; }
+        string Message { get; set; }
     }
 }

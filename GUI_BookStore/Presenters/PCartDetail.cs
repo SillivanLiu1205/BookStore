@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace GUI_BookStore.Presenters
 {
-    public class PBookDetail : Presenter<IBookDetails>
+    public class PCartDetail : Presenter<ICartDetail>
     {
-        public PBookDetail(IBookDetails view) : base(view)
+        public PCartDetail(ICartDetail view) : base(view)
         {
         }
 
-        public string GetCategoryName(int CategoryID)
+        public Book FindBookByBookID(int BookID)
         {
-            return Model.GetCategoryName(CategoryID);
+            return Model.FindBookByBookID(BookID);
         }
     }
 }

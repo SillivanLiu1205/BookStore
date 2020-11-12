@@ -11,34 +11,34 @@ namespace DAL_BookStore
 {
     public class CategoryDAO
     {
-        private static SqlConnection conn;
-        public static CategoryDAO instance;
+        private static SqlConnection Conn;
+        public static CategoryDAO _Instance;
         public static CategoryDAO Instance
         {
-            get { if (instance == null) instance = new CategoryDAO(); return instance; }
-            private set { instance = value; }
+            get { if (_Instance == null) _Instance = new CategoryDAO(); return _Instance; }
+            private set { _Instance = value; }
         }
         private CategoryDAO()
         {
-            conn = sqlConnection.getConnection();
+            Conn = MySqlConnection.GetConnection();
         }
-        public List<string> getAllCategoryName()
+        public List<string> GetAllCategoryName()
         {
             List<string> CategoryListName = new List<string>();
             string Sql = "SELECT CategoryName FROM dbo.Category";
-            SqlCommand cmd = new SqlCommand(Sql, conn);
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
             try
             {
-                if(conn.State == ConnectionState.Closed)
+                if(Conn.State == ConnectionState.Closed)
                 {
-                    conn.Open();
+                    Conn.Open();
                 }
-                SqlDataReader dataReader = cmd.ExecuteReader();
-                if (dataReader.HasRows)
+                SqlDataReader DataReader = Cmd.ExecuteReader();
+                if (DataReader.HasRows)
                 {
-                    while (dataReader.Read())
+                    while (DataReader.Read())
                     {
-                        CategoryListName.Add(dataReader.GetString(0));
+                        CategoryListName.Add(DataReader.GetString(0));
                     }
                 }                
             }
@@ -48,29 +48,29 @@ namespace DAL_BookStore
             }
             finally
             {
-                conn.Close();
+                Conn.Close();
             }
             return CategoryListName;
         }
-        public int getCategoryID(string CategoryName)
+        public int GetCategoryID(string CategoryName)
         {
             int CategoryID = -1;
             if (CategoryName != null)
             {
                 string Sql = "SELECT CategoryID FROM dbo.Category WHERE CategoryName = @CategoryName";
-                SqlCommand cmd = new SqlCommand(Sql, conn);
-                cmd.Parameters.AddWithValue("@CategoryName", CategoryName);
+                SqlCommand Cmd = new SqlCommand(Sql, Conn);
+                Cmd.Parameters.AddWithValue("@CategoryName", CategoryName);
                 try
                 {
-                    if (conn.State == ConnectionState.Closed)
+                    if (Conn.State == ConnectionState.Closed)
                     {
-                        conn.Open();
+                        Conn.Open();
                     }
-                    SqlDataReader dataReader = cmd.ExecuteReader();
-                    if (dataReader.HasRows)
+                    SqlDataReader DataReader = Cmd.ExecuteReader();
+                    if (DataReader.HasRows)
                     {
-                        dataReader.Read();
-                        CategoryID = dataReader.GetInt32(0);
+                        DataReader.Read();
+                        CategoryID = DataReader.GetInt32(0);
                     }
                 }
                 catch (SqlException e)
@@ -79,28 +79,28 @@ namespace DAL_BookStore
                 }
                 finally
                 {
-                    conn.Close();
+                    Conn.Close();
                 }
             }
             return CategoryID;
         }
-        public string getCategoryName(int CategoryID)
+        public string GetCategoryName(int CategoryID)
         {
             string CategoryName = null;
             string Sql = "SELECT CategoryName FROM dbo.Category WHERE CategoryID = @CategoryID";
-            SqlCommand cmd = new SqlCommand(Sql, conn);
-            cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
+            Cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
             try
             {
-                if (conn.State == ConnectionState.Closed)
+                if (Conn.State == ConnectionState.Closed)
                 {
-                    conn.Open();
+                    Conn.Open();
                 }
-                SqlDataReader dataReader = cmd.ExecuteReader();
-                if (dataReader.HasRows)
+                SqlDataReader DataReader = Cmd.ExecuteReader();
+                if (DataReader.HasRows)
                 {
-                    dataReader.Read();
-                    CategoryName = dataReader.GetString(0);
+                    DataReader.Read();
+                    CategoryName = DataReader.GetString(0);
                 }
             }
             catch (SqlException e)
@@ -109,7 +109,7 @@ namespace DAL_BookStore
             }
             finally
             {
-                conn.Close();
+                Conn.Close();
             }
             return CategoryName;
         }

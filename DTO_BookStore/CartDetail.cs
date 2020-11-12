@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO_BookStore
 {
-    class CartDetail
+    public class CartDetail
     {
         public int CartDetailID { get; private set; }
         public int CartID { get; set; }

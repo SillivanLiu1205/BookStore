@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI_BookStore.IViews
 {
-    public interface IBookDetails : IView
+    public interface IYourCart : IView
     {
-        Book _book { get; set; }
+        DataGridView CartDetails { get; }
+        Label LabelMessage { get; }
+        Label LabelSubtotal { get; }
     }
 }
