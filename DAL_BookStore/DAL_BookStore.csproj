@@ -44,6 +44,7 @@
     <Compile Include="AccountDAO.cs" />
     <Compile Include="BookDAO.cs" />
     <Compile Include="CartDAO.cs" />
+    <Compile Include="CartDetailDAO.cs" />
     <Compile Include="CategoryDAO.cs" />
     <Compile Include="MySqlConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

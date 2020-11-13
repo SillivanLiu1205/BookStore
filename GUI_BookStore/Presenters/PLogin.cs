@@ -18,28 +18,20 @@ namespace GUI_BookStore.Presenters
 
         public Form Login()
         {
-            Form view;
+            Form view = null;
             string Username = View.Username;
             string Password = View.Password;
 
-            Account account = Model.Login(Username, Password);
-            try
+            Account account = Model.CheckLogin(Username, Password);
+            if (account.Role == "Admin")
             {
-                if (account.Role == "Admin")
-                {
-                    view = frmAdmin.Instance;
-                    frmAdmin.Instance.account = account;
-                }
-                else if (account.Role == "User")
-                {
-                    view = frmUser.Instance;
-                    frmUser.Instance.account = account;
-                }
-                else throw new Exception("Username or Password is not correct");
-            }catch (Exception e)
-            {
-                throw new Exception("Username or Password is null");
+                view = new frmAdmin(account);
             }
+            else if (account.Role == "User")
+            {
+                view = new frmUser(account);
+            }
+            else throw new Exception("Username or Password is not correct");            
             return view;
         }
     }

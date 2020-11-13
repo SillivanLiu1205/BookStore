@@ -13,21 +13,19 @@ using System.Windows.Forms;
 
 namespace GUI_BookStore.Views.Popup
 {
-    public partial class frmBookDetails : Form, IBookDetails
+    public partial class frmBookDetails : Form
     {
-        private PBookDetail bookDetailPresenter;
-        public Book book { get; set; }
+        public Book book;
 
         public frmBookDetails(Book book)
         {
             InitializeComponent();
-            bookDetailPresenter = new PBookDetail(this);
             this.book = book;
         }
 
         private void frmBookDetails_Load(object sender, EventArgs e)
         {
-            string CategoryName = bookDetailPresenter.GetCategoryName(book.Category);
+            string CategoryName = book.BookCategory.CategoryName;
             string Language = (book.IsLocalBook ? "Vietnamese" : "English");
             lbBookDetails.Text = "Title: " + book.Title +
                                  "\n\nPrice: " + book.Price +

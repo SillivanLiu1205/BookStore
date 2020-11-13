@@ -32,7 +32,7 @@ namespace GUI_BookStore.Views.Popup
         private void LoadDetailsForm()
         {
             frmBookDetails frm = new frmBookDetails(this.book);
-            frmUser.Instance.loadPopupForm(frm);
+            frmUser.loadPopupForm(frm);
         }
 
         private void ptbBok_Click(object sender, EventArgs e)

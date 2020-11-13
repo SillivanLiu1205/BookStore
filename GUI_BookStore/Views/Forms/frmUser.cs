@@ -12,24 +12,11 @@ namespace GUI_BookStore.UserForms
         int panelWidth;
         bool isCollapsed;
         public Account account { get; set; }
-        public Cart tmpCart { get; set; }
-        public static frmUser instance;
-        public static frmUser Instance
-        {
-            get
-            {
-                if(instance == null)
-                {
-                    instance = new frmUser();
-                }
-                return instance;
-            }
-            private set { instance = value; }
-        }
 
-        private frmUser()
+        public frmUser(Account account)
         {
             InitializeComponent();
+            this.account = account;
         }
 
         private void timerCollapse_Tick(object sender, EventArgs e)
@@ -76,7 +63,7 @@ namespace GUI_BookStore.UserForms
 
         private void btnYourCart_Click(object sender, EventArgs e)
         {
-            UC_YourCart c = new UC_YourCart();
+            UC_YourCart c = new UC_YourCart(account.Username);
             moveSidePanel(btnYourCart);
             pnControl.Controls.Clear();
             pnControl.Controls.Add(c);
@@ -112,8 +99,6 @@ namespace GUI_BookStore.UserForms
         private void frmUser_Load(object sender, EventArgs e)
         {
             lbWelcome.Text = "Welcome " + account.Fullname;
-            btnBack.Visible = false;
-            instance = this;
             UC_Home c = new UC_Home();
             panelWidth = pnLeft.Width;
             isCollapsed = false;
@@ -122,13 +107,7 @@ namespace GUI_BookStore.UserForms
             pnControl.Controls.Add(c);
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            pnControl.Controls["UC_Home"].BringToFront();
-            btnBack.Visible = false;
-        }
-
-        public  void loadPopupForm(Form frm)
+        public static void loadPopupForm(Form frm)
         {
             frm.ShowDialog();
         }

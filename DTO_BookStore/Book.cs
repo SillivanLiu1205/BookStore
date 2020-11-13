@@ -16,13 +16,13 @@ namespace DTO_BookStore
         public string Author { get; set; }
         public string Publisher { get; set; }
         public bool IsLocalBook { get; set; }
-        public int Category { get; set; }
         public string Image { get; set; }
+        public Category BookCategory { get; set; }
         public Book()
         {
 
         }
-        public Book (int BookID, string Title, int Price, int Quantity, string Author, string Publisher, int CategoryID, bool IsLocalBook, string Image)
+        public Book (int BookID, string Title, int Price, int Quantity, string Author, string Publisher, bool IsLocalBook, string Image, Category BookCategory)
         {
             this.BookID = BookID;
             this.Title = Title;
@@ -31,7 +31,7 @@ namespace DTO_BookStore
             this.Author = Author;
             this.Publisher = Publisher;
             this.IsLocalBook = IsLocalBook;
-            this.Category = Category;
+            this.BookCategory = BookCategory;
             this.Image = Image;
         }
     }

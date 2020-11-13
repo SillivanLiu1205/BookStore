@@ -37,7 +37,7 @@ namespace DAL_BookStore
             Cmd.Parameters.AddWithValue("@Quantity", book.Quantity);
             Cmd.Parameters.AddWithValue("@Author", book.Author);
             Cmd.Parameters.AddWithValue("@Pulisher", book.Publisher);
-            Cmd.Parameters.AddWithValue("@CategoryID", book.Category);
+            Cmd.Parameters.AddWithValue("@CategoryID", book.BookCategory.CategoryID);
             Cmd.Parameters.AddWithValue("@IsLocal", book.IsLocalBook);
             Cmd.Parameters.AddWithValue("@Image", book.Image);
             try
@@ -79,7 +79,7 @@ namespace DAL_BookStore
             Cmd.Parameters.AddWithValue("@Quantity", book.Quantity);
             Cmd.Parameters.AddWithValue("@Author", book.Author);
             Cmd.Parameters.AddWithValue("@Pulisher", book.Publisher);
-            Cmd.Parameters.AddWithValue("@CategoryID", book.Category);
+            Cmd.Parameters.AddWithValue("@CategoryID", book.BookCategory.CategoryID);
             Cmd.Parameters.AddWithValue("@IsLocal", book.IsLocalBook);
             Cmd.Parameters.AddWithValue("@Image", book.Image);
             try
@@ -152,7 +152,7 @@ namespace DAL_BookStore
                         bool IsLocal = DataReader.GetBoolean(7);
                         string Image = DataReader.GetString(8);
 
-                        Book b = new Book(BookID, Title, Price, Quantity, Author, Publisher, CategoryID, IsLocal, Image);
+                        Book b = new Book(BookID, Title, Price, Quantity, Author, Publisher, IsLocal, Image, CategoryDAO.Instance.GetCategoryByID(CategoryID));
                     }
                 }
             }
@@ -170,7 +170,7 @@ namespace DAL_BookStore
         public List<Book> GetBooks(string SearchBy, string SearchContext, string language, string CategoryName)
         {
             List<Book> BookList = new List<Book>();
-            int CategoryID = CategoryDAO.Instance.GetCategoryID(CategoryName);
+            Category category = CategoryDAO.Instance.GetCategoryByName(CategoryName);
             string Sql = "SELECT* FROM dbo.Book WHERE ";
             if (!SearchContext.Equals(string.Empty))
             {
@@ -185,9 +185,9 @@ namespace DAL_BookStore
             {
                 Sql += "IsLocal = 0 AND ";
             }        
-            if (CategoryID > 0)
+            if (category != null)
             {
-                Sql += "CategoryID = " + CategoryID + " AND ";
+                Sql += "CategoryID = " + category.CategoryName + " AND ";
             }
             Sql += "1=1";
 
@@ -212,8 +212,13 @@ namespace DAL_BookStore
                         int Category = DataReader.GetInt32(6);
                         bool IsLocal = DataReader.GetBoolean(7);
                         string Image = DataReader.GetString(8);
+                        if(category == null)
+                        {
+                            int CategoryID = DataReader.GetInt32(6);
+                            category = CategoryDAO.Instance.GetCategoryByID(CategoryID);
+                        }
 
-                        Book b = new Book(BookID, Title, Price, Quantity, Author, Publisher, CategoryID, IsLocal, Image);
+                        Book b = new Book(BookID, Title, Price, Quantity, Author, Publisher, IsLocal, Image, category);
                         BookList.Add(b);
                     }
                 }

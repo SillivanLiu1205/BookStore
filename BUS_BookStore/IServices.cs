@@ -1,4 +1,5 @@
-﻿using DTO_BookStore;
+﻿using DAL_BookStore;
+using DTO_BookStore;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,7 @@ namespace BUS_BookStore
         Account CheckLogin(String Username, string Password);
         bool AddNewAccount(Account Account);
         bool UpdateAccount(Account NewAccount);
+        DataTable FindAccount(string SearchBy, string SearchContext);
 
         //BookDAO
         List<Book> GetBooks(string SearchBy, string SearchContext, string Language, string CategoryID);
@@ -24,11 +26,10 @@ namespace BUS_BookStore
 
         //CategoryDAO
         List<string> GetAllCategoryName();
-        int GetCategoryID(string CategoryName);
-        string GetCategoryName(int CategoryID);
+        Category GetCategoryByName(string CategoryName);
+        Category GetCategoryByID(int CategoryID);
 
         //CartDAO
-        Cart GetNotDoneCartByUsername(string Username);
         List<Cart> GetAllCartByUserame(string Username);
         List<Cart> GetAllCartByDateMothYear(DateTime Date, string SearchBy);
 

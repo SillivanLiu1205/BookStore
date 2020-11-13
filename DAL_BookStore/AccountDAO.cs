@@ -61,21 +61,19 @@ namespace DAL_BookStore
                 if (Conn.State == ConnectionState.Closed)
                 {
                     Conn.Open();
-                    SqlDataReader Reader = Cmd.ExecuteReader();
-                    if (Reader.HasRows)
-                    {
-                        Account = new Account();
-                        while (Reader.Read())
-                        {
-                            Account.Username = Reader.GetString(0);
-                            Account.Fullname = Reader.GetString(1);
-                            Account.Password = Reader.GetString(2);
-                            Account.Role = Reader.GetString(3);
-                            Account.Address = Reader.GetString(4);
-                            Account.Phone = Reader.GetString(5);
-                        }
-                    }
                 }
+                SqlDataReader Reader = Cmd.ExecuteReader();
+                if (Reader.HasRows)
+                {
+                    while (Reader.Read())
+                    {
+                        string Fullname = Reader.GetString(1);
+                        string Role = Reader.GetString(3);
+                        string Address = Reader.GetString(4);
+                        string Phone = Reader.GetString(5);
+                        Account = new Account(Username, Fullname, Password, Role, Address, Phone);
+                    }
+                }                
             }
             catch (SqlException e)
             {
@@ -149,6 +147,38 @@ namespace DAL_BookStore
             }
             return Result;
         }
-        
+        public DataTable FindAccount(string SearchBy, string SearchContext)
+        {
+            String Sql;
+            if (SearchContext != null)
+            {
+                Sql = "SELECT * FROM dbo.Account";
+            }
+            else
+            {
+                Sql = "SELECT * FROM dbo.Account WHERE " + SearchBy + "like '%" + SearchContext + "%'";
+            }
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
+            SqlDataAdapter da = new SqlDataAdapter(Cmd);
+            DataTable dt = new DataTable();
+            try
+            {
+                if (Conn.State == ConnectionState.Closed)
+                {
+                    Conn.Open();
+                }
+                da.Fill(dt);                
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            return dt;
+        }
+
     }
 }

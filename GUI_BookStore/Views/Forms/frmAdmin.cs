@@ -11,15 +11,10 @@ namespace GUI_BookStore.UserForms
         int panelWidth;
         bool isCollapsed;
         public Account account { get; set; }
-        public static frmAdmin instance;
-        public static frmAdmin Instance
-        {
-            get { if (instance == null) instance = new frmAdmin(); return instance; }
-            private set { }
-        }
-        private frmAdmin()
+        public frmAdmin(Account account)
         {
             InitializeComponent();
+            this.account = account;
         }
 
         private void frmAdmin_Load(object sender, EventArgs e)

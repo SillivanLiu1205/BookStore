@@ -10,7 +10,7 @@ namespace GUI_BookStore.IViews
 {
     public interface IYourCart : IView
     {
-        DataGridView CartDetails { get; }
+        FlowLayoutPanel CartDetails { get; }
         Label LabelMessage { get; }
         Label LabelSubtotal { get; }
     }

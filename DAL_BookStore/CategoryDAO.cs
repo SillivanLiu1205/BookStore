@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO_BookStore;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -52,9 +53,9 @@ namespace DAL_BookStore
             }
             return CategoryListName;
         }
-        public int GetCategoryID(string CategoryName)
+        public Category GetCategoryByName(string CategoryName)
         {
-            int CategoryID = -1;
+            Category category = null;
             if (CategoryName != null)
             {
                 string Sql = "SELECT CategoryID FROM dbo.Category WHERE CategoryName = @CategoryName";
@@ -70,7 +71,8 @@ namespace DAL_BookStore
                     if (DataReader.HasRows)
                     {
                         DataReader.Read();
-                        CategoryID = DataReader.GetInt32(0);
+                        int CategoryID = DataReader.GetInt32(0);
+                        category = new Category(CategoryID, CategoryName);
                     }
                 }
                 catch (SqlException e)
@@ -82,11 +84,11 @@ namespace DAL_BookStore
                     Conn.Close();
                 }
             }
-            return CategoryID;
+            return category;
         }
-        public string GetCategoryName(int CategoryID)
+        public Category GetCategoryByID(int CategoryID)
         {
-            string CategoryName = null;
+            Category category = null;
             string Sql = "SELECT CategoryName FROM dbo.Category WHERE CategoryID = @CategoryID";
             SqlCommand Cmd = new SqlCommand(Sql, Conn);
             Cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
@@ -100,7 +102,8 @@ namespace DAL_BookStore
                 if (DataReader.HasRows)
                 {
                     DataReader.Read();
-                    CategoryName = DataReader.GetString(0);
+                    string CategoryName = DataReader.GetString(0);
+                    category = new Category(CategoryID, CategoryName);
                 }
             }
             catch (SqlException e)
@@ -111,7 +114,7 @@ namespace DAL_BookStore
             {
                 Conn.Close();
             }
-            return CategoryName;
+            return category;
         }
     }
 }

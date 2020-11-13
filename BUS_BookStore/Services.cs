@@ -29,6 +29,10 @@ namespace BUS_BookStore
         {
             return AccountDAO.Instance.UpdateAccount(NewAccount);
         }
+        public DataTable FindAccount(string SearchBy, string SearchContext)
+        {
+            return AccountDAO.Instance.FindAccount(SearchBy, SearchContext);
+        }
 
         //Book
         public List<Book> GetBooks(string SearchBy, string SearchContext, string Language, string CategoryID)
@@ -56,20 +60,16 @@ namespace BUS_BookStore
         {
             return CategoryDAO.Instance.GetAllCategoryName();
         }
-        public int GetCategoryID(string CategoryName)
+        public Category GetCategoryByName(string CategoryName)
         {
-            return CategoryDAO.Instance.GetCategoryID(CategoryName);
+            return CategoryDAO.Instance.GetCategoryByName(CategoryName);
         }
-        public string GetCategoryName(int CategoryID)
+        public Category GetCategoryByID(int CategoryID)
         {
-            return CategoryDAO.Instance.GetCategoryName(CategoryID);
+            return CategoryDAO.Instance.GetCategoryByID(CategoryID);
         }
 
         //Cart
-        public Cart GetNotDoneCartByUsername(string Username)
-        {
-            return CartDAO.Instance.GetNotDoneCartByUsername(Username);
-        }
         public List<Cart> GetAllCartByUserame(string Username)
         {
             return CartDAO.Instance.GetAllCartByUserame(Username);

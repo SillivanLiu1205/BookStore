@@ -13,7 +13,7 @@ namespace GUI_BookStore.Models
         Services _Services = new Services();
 
         //Account
-        public Account Login(string Username, string Password)
+        public Account CheckLogin(string Username, string Password)
         {
             return _Services.CheckLogin(Username, Password);
         }
@@ -25,6 +25,10 @@ namespace GUI_BookStore.Models
         {
             return _Services.UpdateAccount(NewAccount);
         }
+        public DataTable FindAccount(string SearchBy, string SearchContext)
+        {
+            return _Services.FindAccount(SearchBy, SearchContext);
+        }
 
         //Book
         public List<Book> GetBooks(string SearchBy, string SearchContext, string Language, string CategoryID)
@@ -35,10 +39,6 @@ namespace GUI_BookStore.Models
         {
             return _Services.FindBookByBookID(BookID);
         }
-        public bool AddNewBook(Book book)
-        {
-            return _Services.AddNewBook(book);
-        }
         public bool UpdateBook(Book book)
         {
             return _Services.UpdateBook(book);
@@ -47,26 +47,25 @@ namespace GUI_BookStore.Models
         {
             return _Services.DeleteBook(BookID);
         }
-
+        public bool AddNewBook(Book book)
+        {
+            return _Services.AddNewBook(book);
+        }
         //Category
         public List<string> GetAllCategoryName()
         {
             return _Services.GetAllCategoryName();
         }
-        public int GetCategoryID(string CategoryName)
+        public Category GetCategoryByName(string CategoryName)
         {
-            return _Services.GetCategoryID(CategoryName);
+            return _Services.GetCategoryByName(CategoryName);
         }
-        public string GetCategoryName(int CategoryID)
+        public Category GetCategoryByID(int CategoryID)
         {
-            return _Services.GetCategoryName(CategoryID);
+            return _Services.GetCategoryByID(CategoryID);
         }
 
-        //Card
-        public Cart GetNotDoneCartByUsername(string Username)
-        {
-            return _Services.GetNotDoneCartByUsername(Username);
-        }
+        //Cart
         public List<Cart> GetAllCartByUserame(string Username)
         {
             return _Services.GetAllCartByUserame(Username);
@@ -75,8 +74,8 @@ namespace GUI_BookStore.Models
         {
             return _Services.GetAllCartByDateMothYear(Date, SearchBy);
         }
-        
-        //CardDetail
+
+        //CartDetail
         public List<CartDetail> GetCartDetailByCartID(int CartID)
         {
             return _Services.GetCartDetailByCartID(CartID);

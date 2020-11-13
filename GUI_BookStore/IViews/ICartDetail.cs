@@ -9,5 +9,6 @@ namespace GUI_BookStore.IViews
 {
     public interface ICartDetail : IView
     {
+        CartDetail cartDetail { get; set; }
     }
 }

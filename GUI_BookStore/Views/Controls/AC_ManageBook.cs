@@ -21,13 +21,5 @@ namespace GUI_BookStore.UserControls
         {
             cbxSearchBy.SelectedIndex = 1;
         }
-
-        private void bookBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bookBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.myBookStoreDataSet);
-
-        }
     }
 }

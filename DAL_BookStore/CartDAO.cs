@@ -23,45 +23,10 @@ namespace DAL_BookStore
             Conn = MySqlConnection.GetConnection();
         }
 
-        public Cart GetNotDoneCartByUsername(string Username)
-        {
-            Cart cart = null;
-            string Sql = "SELECT * FROM dbo.Cart WHERE Username = @Username AND Status = 'Not done'";
-            SqlCommand Cmd = new SqlCommand(Sql, Conn);
-            Cmd.Parameters.AddWithValue("@Username", Username);
-            try
-            {
-                if(Conn.State == ConnectionState.Closed)
-                {
-                    Conn.Open();
-                }
-                SqlDataReader DataReader = Cmd.ExecuteReader();
-                if (DataReader.HasRows)
-                {
-                    while (DataReader.Read())
-                    {
-                        int CartID = DataReader.GetInt32(0);
-                        DateTime OrderDate = DataReader.GetDateTime(1);
-                        DateTime ReceiveDate = DataReader.GetDateTime(2);
-                        string Status = DataReader.GetString(4);
-                        cart = new Cart(CartID, OrderDate, ReceiveDate, Username, Status);
-                    }
-                }
-            } 
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                Conn.Close();
-            }
-            return cart;
-        }
-
-        public List<Cart> GetAllCartByUserame (string Username)
+        /*public List<Cart> GetAllCartByUserame (string Username)
         {
             List<Cart> CartList = new List<Cart>();
+            Account account = AccountDAO.Instance.FindAccountByUsername(Username);
             string Sql = "SELECT * FROM dbo.Cart WHERE Username = @Username";
             SqlCommand Cmd = new SqlCommand(Sql, Conn);
             Cmd.Parameters.AddWithValue("@Username", Username);
@@ -80,7 +45,7 @@ namespace DAL_BookStore
                         DateTime OrderDate = DataReader.GetDateTime(1);
                         DateTime ReceiveDate = DataReader.GetDateTime(2);
                         string Status = DataReader.GetString(4);
-                        CartList.Add(new Cart(CartID, OrderDate, ReceiveDate, Username, Status));
+                        CartList.Add(new Cart(CartID, OrderDate, ReceiveDate, Status, account));
                     }
                 }
             }
@@ -93,11 +58,12 @@ namespace DAL_BookStore
                 Conn.Close();
             }
             return CartList;
-        }
+        }*/
 
-        public List<Cart> GetAllCartByDateMothYear (DateTime Date, string SearchBy)
+        /*public List<Cart> GetAllCartByDateMothYear (DateTime Date, string SearchBy)
         {
             List<Cart> CartList = new List<Cart>();
+            Account account = null;
             string Sql;
             if (SearchBy.Equals("Date"))
             {
@@ -128,7 +94,11 @@ namespace DAL_BookStore
                         DateTime OrderDate = DataReader.GetDateTime(1);
                         string Username = DataReader.GetString(3);
                         string Status = DataReader.GetString(4);
-                        CartList.Add(new Cart(CartID, OrderDate, Date, Username, Status));
+                        if(account == null)
+                        {
+                            account = AccountDAO.Instance.FindAccountByUsername(Username);
+                        }
+                        CartList.Add(new Cart(CartID, OrderDate, Date, Status, account));
                     }
                 }
             }
@@ -142,6 +112,65 @@ namespace DAL_BookStore
             }
             return CartList;
         }
+        public Cart FindCartByCartID(int CartID)
+        {
+            Cart cart = null;
+            string Sql = "SELECT * FROM dbo.Cart WHERE CartID = @CartID";
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
+            Cmd.Parameters.AddWithValue("@CartID", CartID);
+            try
+            {
+                if (Conn.State == ConnectionState.Closed)
+                {
+                    Conn.Open();
+                }
+                SqlDataReader DataReader = Cmd.ExecuteReader();
+                if (DataReader.HasRows)
+                {
+                    DataReader.Read();
+                    DateTime OrderDate = DataReader.GetDateTime(1);
+                    DateTime ReceiveDate = DataReader.GetDateTime(2);
+                    string Username = DataReader.GetString(3);
+                    string Status = DataReader.GetString(4);
+                    cart = new Cart(CartID, OrderDate, ReceiveDate, Status, AccountDAO.Instance.FindAccountByUsername(Username));
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Conn.Open();
+            }
+            return cart;
+        }
+
+        public bool AddCartByUsername(Cart cart)
+        {
+            bool Result = false;
+            string Sql = "INSERT INTO dbo.Cart VALUES(@OrderDate, NULL, @Username, 'doing')";
+            SqlCommand Cmd = new SqlCommand(Sql, Conn);
+            Cmd.Parameters.AddWithValue("@OderDate", cart.DateOrder);
+            Cmd.Parameters.AddWithValue("@Username", cart.CartAccount.Username);
+            try
+            {
+                if(Conn.State == ConnectionState.Closed)
+                {
+                    Conn.Open();
+                }
+                Result = Cmd.ExecuteNonQuery() > 0;
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            return Result;
+        }*/
 
     }
 }

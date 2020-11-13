@@ -22,6 +22,7 @@ namespace DAL_BookStore
         public List<CartDetail> GetCartDetailByCartID(int CartID)
         {
             List<CartDetail> DetailList = new List<CartDetail>();
+            Cart cart = CartDAO.Instance.FindCartByCartID(CartID);
             string Sql = "SELECT * FROM dbo.CartDetail WHERE CartID = @CartID";
             SqlCommand Cmd = new SqlCommand(Sql, Conn);
             Cmd.Parameters.AddWithValue("@CartID", CartID);
@@ -39,7 +40,7 @@ namespace DAL_BookStore
                         int CartDetailID = DataReader.GetInt32(0);
                         int BookID = DataReader.GetInt32(2);
                         int Quantity = DataReader.GetInt32(3);
-                        DetailList.Add(new CartDetail(CartDetailID, CartID, BookID, Quantity));
+                        DetailList.Add(new CartDetail(CartDetailID, Quantity, cart, BookDAO.Instance.FindBookByID(BookID)));
                     }
                 }
             }
@@ -83,8 +84,8 @@ namespace DAL_BookStore
             string Sql = "INSERT INTO dbo.CartDetail VALUES(@CartDetailID, @CartID, @BookID, @Quantity)";
             SqlCommand Cmd = new SqlCommand(Sql, Conn);
             Cmd.Parameters.AddWithValue("@CartDetailID", cartDetail.CartDetailID);
-            Cmd.Parameters.AddWithValue("@CartID", cartDetail.CartID);
-            Cmd.Parameters.AddWithValue("@BookID", cartDetail.BookID);
+            Cmd.Parameters.AddWithValue("@CartID", cartDetail.CartDetailCart.CartID);
+            Cmd.Parameters.AddWithValue("@BookID", cartDetail.CartDetailBook.BookID);
             Cmd.Parameters.AddWithValue("@Quantity", cartDetail.Quantity);
             try
             {

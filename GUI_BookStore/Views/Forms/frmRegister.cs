@@ -30,8 +30,6 @@ namespace GUI_BookStore.UserForms
 
         public string Phone => txtPhone.Text;
 
-        public string message { get => message; set => message = value; }
-
         private PRegister registerPresenter;
 
         public frmRegister()
@@ -48,7 +46,7 @@ namespace GUI_BookStore.UserForms
         {
             try
             {
-                bool addResult = registerPresenter.addNewAccount();
+                bool addResult = registerPresenter.AddNewAccount();
                 if (addResult)
                 {
                     MessageBox.Show("Successfull");
@@ -56,13 +54,10 @@ namespace GUI_BookStore.UserForms
                 }
                 else
                 {
-                    if (message.Equals(null))
-                    {
-                        message = "Sign Up Fail";
-                    }
-                    MessageBox.Show(message);
+                    MessageBox.Show("Register Fail");
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Sign Up Fail", ex.Message);
             }

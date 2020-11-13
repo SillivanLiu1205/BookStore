@@ -10,16 +10,16 @@ namespace DTO_BookStore
     {        
         public int CartID { get; private set; }
         public DateTime DateOrder { get; set; }
-        public DateTime DateReceive { get; set; }
-        public string Username { get; set; }
+        public DateTime DateReceive { get; set; }        
         public string Status { get; set; }
-        public Cart(int cartID, DateTime dateOrder, DateTime dateReceive, string username, string status)
+        public Account CartAccount { get; set; }
+        public Cart(int cartID, DateTime dateOrder, DateTime dateReceive, string status, Account CartAccount)
         {
-            CartID = cartID;
-            DateOrder = dateOrder;
-            DateReceive = dateReceive;
-            Username = username;
-            Status = status;
+            this.CartID = cartID;
+            this.DateOrder = dateOrder;
+            this.DateReceive = dateReceive;
+            this.Status = status;
+            this.CartAccount = CartAccount;
         }
         public Cart()
         {

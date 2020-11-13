@@ -14,9 +14,14 @@ namespace GUI_BookStore.Presenters
         {
         }
 
-        public Book FindBookByBookID(int BookID)
+        public bool DeleteCartDetail(int CartDetailID)
         {
-            return Model.FindBookByBookID(BookID);
+            return Model.DeleteCartDetail(CartDetailID);
+        }
+
+        public bool UpdateDateCartDetail(int CartDetailID, int Quantity)
+        {
+            return Model.UpdateCartDetailQuantity(CartDetailID, Quantity);
         }
     }
 }

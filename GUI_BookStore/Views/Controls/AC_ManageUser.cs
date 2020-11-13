@@ -12,6 +12,8 @@ namespace GUI_BookStore.UserControls
 {
     public partial class UC_ManageUser : UserControl
     {
+        public string SearchBy { get => cbxSearchBy.SelectedItem.ToString();}
+        public string SearchContext { get => txtSearch.Text; }
         public UC_ManageUser()
         {
             InitializeComponent();
@@ -19,8 +21,6 @@ namespace GUI_BookStore.UserControls
 
         private void UC_ManageUser_Load(object sender, EventArgs e)
         {
-            cbxSortBy.SelectedIndex = 1;
             cbxSearchBy.SelectedIndex = 1;
         }
-    }
 }

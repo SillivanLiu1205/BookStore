@@ -30,8 +30,7 @@ namespace GUI_BookStore.Presenters
             }
             else
             {
-                View.Message = "Password and Confirm Password is not equal";
-                return false;
+                throw new Exception("Password and Confirm Password are not match");
             }
         }
     }

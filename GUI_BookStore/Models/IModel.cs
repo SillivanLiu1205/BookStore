@@ -10,10 +10,11 @@ namespace GUI_BookStore.Models
 {
     public interface IModel
     {
-        //AccountDAO
-        Account Login(string Username, string Password);
-        bool AddNewAccount(Account account);
+        //AcountDAO
+        Account CheckLogin(String Username, string Password);
+        bool AddNewAccount(Account Account);
         bool UpdateAccount(Account NewAccount);
+        DataTable FindAccount(string SearchBy, string SearchContext);
 
         //BookDAO
         List<Book> GetBooks(string SearchBy, string SearchContext, string Language, string CategoryID);
@@ -24,11 +25,10 @@ namespace GUI_BookStore.Models
 
         //CategoryDAO
         List<string> GetAllCategoryName();
-        int GetCategoryID(string CategoryName);
-        string GetCategoryName(int CategoryID);
+        Category GetCategoryByName(string CategoryName);
+        Category GetCategoryByID(int CategoryID);
 
-        //CardDAO
-        Cart GetNotDoneCartByUsername(string Username);
+        //CartDAO
         List<Cart> GetAllCartByUserame(string Username);
         List<Cart> GetAllCartByDateMothYear(DateTime Date, string SearchBy);
 

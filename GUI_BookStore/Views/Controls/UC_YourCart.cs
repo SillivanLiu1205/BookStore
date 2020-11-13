@@ -15,22 +15,22 @@ namespace GUI_BookStore.UserControls
 {
     public partial class UC_YourCart : UserControl, IYourCart
     {
-        public DataGridView CartDetails { get => dgvCartDetails; }
+        public FlowLayoutPanel CartDetails { get => flpCartDetail; }
         public Label LabelMessage { get => lbMessage; }
         public Label LabelSubtotal { get => lbSubtotal; }
-        public Cart cart;
+        public Cart cart { get; set; }
 
         public PYourCart YourCartPresenter;
-        public UC_YourCart(Cart cart)
+        public UC_YourCart(string Username, Cart card)
         {
             InitializeComponent();
-            YourCartPresenter = new PYourCart();
+            YourCartPresenter = new PYourCart(this);
             this.cart = cart;
         }
 
-        private void UC_YourCart_Load(object sender, EventArgs e)
+        private void timerPain_Tick(object sender, EventArgs e)
         {
-            YourCartPresenter.Get
+            YourCartPresenter.LoadForm(cart.CartID);
         }
     }
 }
