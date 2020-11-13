@@ -33,10 +33,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnOrder = new System.Windows.Forms.Button();
             this.lbSubtotal = new System.Windows.Forms.Label();
-            this.dgvCartDetails = new System.Windows.Forms.DataGridView();
+            this.flpCartDetail = new System.Windows.Forms.FlowLayoutPanel();
             this.bsCart = new System.Windows.Forms.BindingSource(this.components);
+            this.timerPain = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCartDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,20 +91,19 @@
             this.lbSubtotal.Text = "Sub Total:";
             this.lbSubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // dgvCartDetails
+            // flpCartDetail
             // 
-            this.dgvCartDetails.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCartDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCartDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCartDetails.Enabled = false;
-            this.dgvCartDetails.GridColor = System.Drawing.Color.White;
-            this.dgvCartDetails.Location = new System.Drawing.Point(0, 0);
-            this.dgvCartDetails.Name = "dgvCartDetails";
-            this.dgvCartDetails.RowHeadersWidth = 51;
-            this.dgvCartDetails.RowTemplate.Height = 24;
-            this.dgvCartDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCartDetails.Size = new System.Drawing.Size(960, 550);
-            this.dgvCartDetails.TabIndex = 4;
+            this.flpCartDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpCartDetail.Location = new System.Drawing.Point(0, 0);
+            this.flpCartDetail.Name = "flpCartDetail";
+            this.flpCartDetail.Size = new System.Drawing.Size(960, 634);
+            this.flpCartDetail.TabIndex = 4;
+            // 
+            // timerPain
+            // 
+            this.timerPain.Enabled = true;
+            this.timerPain.Interval = 1000;
+            this.timerPain.Tick += new System.EventHandler(this.timerPain_Tick);
             // 
             // UC_YourCart
             // 
@@ -113,13 +112,12 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lbMessage);
-            this.Controls.Add(this.dgvCartDetails);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.flpCartDetail);
             this.Name = "UC_YourCart";
             this.Size = new System.Drawing.Size(960, 634);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCartDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -129,9 +127,10 @@
         #endregion
         private System.Windows.Forms.Label lbMessage;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dgvCartDetails;
         private System.Windows.Forms.BindingSource bsCart;
         private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Label lbSubtotal;
+        private System.Windows.Forms.FlowLayoutPanel flpCartDetail;
+        private System.Windows.Forms.Timer timerPain;
     }
 }

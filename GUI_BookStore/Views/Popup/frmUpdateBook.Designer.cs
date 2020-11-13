@@ -58,6 +58,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnDone = new System.Windows.Forms.Button();
             this.btnChangePicture = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -71,6 +74,7 @@
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -116,6 +120,7 @@
             this.tableLayoutPanel.ColumnCount = 2;
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.41727F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.58273F));
+            this.tableLayoutPanel.Controls.Add(this.panel10, 1, 8);
             this.tableLayoutPanel.Controls.Add(this.panel9, 1, 1);
             this.tableLayoutPanel.Controls.Add(this.panel8, 1, 7);
             this.tableLayoutPanel.Controls.Add(this.panel7, 1, 6);
@@ -125,15 +130,15 @@
             this.tableLayoutPanel.Controls.Add(this.pbxImage, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.panel1, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.btnDone, 1, 8);
             this.tableLayoutPanel.Controls.Add(this.btnChangePicture, 0, 8);
+            this.tableLayoutPanel.Controls.Add(this.btnDone, 0, 9);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel.ForeColor = System.Drawing.Color.DarkOrange;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 9;
+            this.tableLayoutPanel.RowCount = 10;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
@@ -396,10 +401,10 @@
             this.btnDone.FlatAppearance.BorderSize = 0;
             this.btnDone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDone.ForeColor = System.Drawing.Color.White;
-            this.btnDone.Location = new System.Drawing.Point(544, 490);
+            this.btnDone.Location = new System.Drawing.Point(144, 544);
             this.btnDone.Margin = new System.Windows.Forms.Padding(4);
             this.btnDone.Name = "btnDone";
-            this.btnDone.Size = new System.Drawing.Size(138, 39);
+            this.btnDone.Size = new System.Drawing.Size(138, 12);
             this.btnDone.TabIndex = 24;
             this.btnDone.Text = "Update";
             this.btnDone.UseVisualStyleBackColor = false;
@@ -418,6 +423,45 @@
             this.btnChangePicture.TabIndex = 27;
             this.btnChangePicture.Text = "Change Picture";
             this.btnChangePicture.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnUpdate.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(20, 9);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(138, 39);
+            this.btnUpdate.TabIndex = 28;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.btnDelete);
+            this.panel10.Controls.Add(this.btnUpdate);
+            this.panel10.Location = new System.Drawing.Point(430, 483);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(367, 54);
+            this.panel10.TabIndex = 6;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnDelete.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(219, 8);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(138, 39);
+            this.btnDelete.TabIndex = 29;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
             // 
             // frmUpdateBook
             // 
@@ -455,6 +499,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -490,5 +535,8 @@
         private System.Windows.Forms.NumericUpDown nudPrice;
         private System.Windows.Forms.TextBox txtPublisher;
         private System.Windows.Forms.TextBox txtAuthor;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }

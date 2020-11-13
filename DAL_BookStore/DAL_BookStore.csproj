@@ -43,8 +43,11 @@
   <ItemGroup>
     <Compile Include="AccountDAO.cs" />
     <Compile Include="BookDAO.cs" />
+    <Compile Include="CartDAO.cs" />
+    <Compile Include="CartDetailDAO.cs" />
+    <Compile Include="CategoryDAO.cs" />
+    <Compile Include="MySqlConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sqlConnection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTO_BookStore\DTO_BookStore.csproj">

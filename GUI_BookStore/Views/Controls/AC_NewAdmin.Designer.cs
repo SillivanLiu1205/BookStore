@@ -40,6 +40,8 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtAddress
@@ -106,7 +108,7 @@
             this.btnCreateAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateAdmin.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateAdmin.ForeColor = System.Drawing.Color.White;
-            this.btnCreateAdmin.Location = new System.Drawing.Point(182, 454);
+            this.btnCreateAdmin.Location = new System.Drawing.Point(182, 541);
             this.btnCreateAdmin.Name = "btnCreateAdmin";
             this.btnCreateAdmin.Size = new System.Drawing.Size(637, 38);
             this.btnCreateAdmin.TabIndex = 30;
@@ -162,11 +164,33 @@
             this.label1.TabIndex = 32;
             this.label1.Text = "*Please fill in this form";
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBox1.Location = new System.Drawing.Point(182, 475);
+            this.maskedTextBox1.Mask = "(+84) 000-000-000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(637, 30);
+            this.maskedTextBox1.TabIndex = 40;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DarkOrange;
+            this.label9.Location = new System.Drawing.Point(178, 448);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 24);
+            this.label9.TabIndex = 39;
+            this.label9.Text = "Phone:";
+            // 
             // UC_NewAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtConfirmPassword);
@@ -200,5 +224,7 @@
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Label label9;
     }
 }

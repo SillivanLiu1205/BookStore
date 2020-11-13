@@ -203,7 +203,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUser";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.frmUser_Load);
             this.pnLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -231,9 +230,9 @@
         private System.Windows.Forms.Button btnHistory;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.Label lbWelcome;
         private System.Windows.Forms.Timer timerCollapse;
         private System.Windows.Forms.Timer timerTime;
         private System.Windows.Forms.Panel pnControl;
+        public System.Windows.Forms.Label lbWelcome;
     }
 }

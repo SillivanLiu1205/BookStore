@@ -1,13 +1,8 @@
-﻿using GUI_BookStore.UserControls;
+﻿using DTO_BookStore;
+using GUI_BookStore.IViews;
+using GUI_BookStore.Presenters;
+using GUI_BookStore.UserControls;
 using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI_BookStore.UserForms
@@ -16,9 +11,12 @@ namespace GUI_BookStore.UserForms
     {
         int panelWidth;
         bool isCollapsed;
-        public frmUser()
+        public Account account { get; set; }
+
+        public frmUser(Account account)
         {
             InitializeComponent();
+            this.account = account;
         }
 
         private void timerCollapse_Tick(object sender, EventArgs e)
@@ -65,7 +63,7 @@ namespace GUI_BookStore.UserForms
 
         private void btnYourCart_Click(object sender, EventArgs e)
         {
-            UC_YourCart c = new UC_YourCart();
+            UC_YourCart c = new UC_YourCart(account.Username);
             moveSidePanel(btnYourCart);
             pnControl.Controls.Clear();
             pnControl.Controls.Add(c);
@@ -100,12 +98,18 @@ namespace GUI_BookStore.UserForms
 
         private void frmUser_Load(object sender, EventArgs e)
         {
+            lbWelcome.Text = "Welcome " + account.Fullname;
             UC_Home c = new UC_Home();
             panelWidth = pnLeft.Width;
             isCollapsed = false;
             timerTime.Start();
             pnControl.Controls.Clear();
             pnControl.Controls.Add(c);
+        }
+
+        public static void loadPopupForm(Form frm)
+        {
+            frm.ShowDialog();
         }
     }
 }

@@ -37,14 +37,10 @@
             this.btnSearch = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.flpBookList = new System.Windows.Forms.FlowLayoutPanel();
-            this.myBookStoreDataSet = new GUI_BookStore.MyBookStoreDataSet();
             this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bookTableAdapter = new GUI_BookStore.MyBookStoreDataSetTableAdapters.BookTableAdapter();
-            this.tableAdapterManager = new GUI_BookStore.MyBookStoreDataSetTableAdapters.TableAdapterManager();
+            this.flpBookList = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myBookStoreDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,7 +94,7 @@
             this.cbxSearchBy.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbxSearchBy.FormattingEnabled = true;
             this.cbxSearchBy.Items.AddRange(new object[] {
-            "Name",
+            "Title",
             "Author",
             "Publisher"});
             this.cbxSearchBy.Location = new System.Drawing.Point(24, 45);
@@ -149,35 +145,12 @@
             // 
             // flpBookList
             // 
+            this.flpBookList.AutoScroll = true;
             this.flpBookList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpBookList.Location = new System.Drawing.Point(0, 94);
             this.flpBookList.Name = "flpBookList";
             this.flpBookList.Size = new System.Drawing.Size(960, 540);
             this.flpBookList.TabIndex = 1;
-            // 
-            // myBookStoreDataSet
-            // 
-            this.myBookStoreDataSet.DataSetName = "MyBookStoreDataSet";
-            this.myBookStoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bookBindingSource
-            // 
-            this.bookBindingSource.DataMember = "Book";
-            this.bookBindingSource.DataSource = this.myBookStoreDataSet;
-            // 
-            // bookTableAdapter
-            // 
-            this.bookTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AccountTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BookTableAdapter = this.bookTableAdapter;
-            this.tableAdapterManager.CartDetailTableAdapter = null;
-            this.tableAdapterManager.CartTableAdapter = null;
-            this.tableAdapterManager.CategoryTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = GUI_BookStore.MyBookStoreDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // UC_ManageBook
             // 
@@ -191,7 +164,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myBookStoreDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -206,10 +178,7 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnNewBook;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.FlowLayoutPanel flpBookList;
-        private MyBookStoreDataSet myBookStoreDataSet;
         private System.Windows.Forms.BindingSource bookBindingSource;
-        private MyBookStoreDataSetTableAdapters.BookTableAdapter bookTableAdapter;
-        private MyBookStoreDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        public System.Windows.Forms.FlowLayoutPanel flpBookList;
     }
 }
